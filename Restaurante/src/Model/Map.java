@@ -18,13 +18,16 @@ public class Map extends JPanel{
 
     private int sizex;              // tamaño en x
     private int sizey;              // tamaño en y
-    private int rectSizex;           // estoy averiguandolo
-    private int rectSizey;           // estoy averiguandolo
+    private int width;
+    private int height;
+
     private List<WorldObject> dust;
     private List<WorldObject> bots;
-    private BufferedImage image = Map.getBufferedImage("baldosa.jpg", this);
+
+    private BufferedImage image  = Map.getBufferedImage("baldosa.jpg", this);
     private BufferedImage image2 = Map.getBufferedImage("baldosa2.jpg", this);
     private BufferedImage image3 = Map.getBufferedImage("cleanerbot.jpg", this);
+
     private List<Rectangle> imagesRect;
     private List<TexturePaint> imagesPaint;
     private List<Rectangle> imagesDust;
@@ -32,7 +35,7 @@ public class Map extends JPanel{
     private List<Rectangle> imagesBots;
     private List<TexturePaint> imagesPaintBots;
 
-    public Map(int sizex, int sizey, int numOfDust) {
+    public Map(int sizex, int sizey, int numOfDust , int square) {
         this.sizex = sizex;
         this.sizey = sizey;
 
@@ -44,8 +47,11 @@ public class Map extends JPanel{
         imagesPaintDust = new ArrayList<>();
         imagesBots = new ArrayList<>();
         imagesPaintBots = new ArrayList<>();
-        rectSizex = 600/sizex;
-        rectSizey = 600/sizey;
+
+        // width  = 600/sizex;
+        // height = 600/sizey;
+        width  = square;
+        height = square;
 
         // organizacion del polvo de manera aleatoria
         for (int i = 0; i < numOfDust; i++) {
@@ -53,15 +59,15 @@ public class Map extends JPanel{
             int x = r.nextInt(sizex);
             int y = r.nextInt(sizey);
             dust.add(new WorldObject(x, y, "dust_"+i));
-            Rectangle rec = new Rectangle(x*rectSizex, y*rectSizey + (rectSizey/2), rectSizex/2, rectSizey/2 );
+            Rectangle rec = new Rectangle( x*width, y*height + (height/2), width/2, height/2 );
             imagesDust.add(rec);
             imagesPaintDust.add(new TexturePaint(image2, rec));
         }
 
 
-        //
+
         for (int i = 0; i < sizex*sizey; i++) {
-            Rectangle rec = new Rectangle((i%sizex)*rectSizex, (i/sizey)*rectSizey, rectSizex, rectSizey);
+            Rectangle rec = new Rectangle( (i%sizex)*width, (i/sizex)*height, width, height );
             imagesRect.add(rec);
             imagesPaint.add(new TexturePaint(image, rec));
         }
@@ -72,6 +78,7 @@ public class Map extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D)g;
+
         // dibujar tiles
         for (int i = 0; i < sizex*sizey; i++) {
             g2d.setPaint(imagesPaint.get(i));
@@ -130,7 +137,7 @@ public class Map extends JPanel{
 
     public void addBot(String alias, int x, int y) {
         bots.add(new WorldObject(x, y, alias));
-        Rectangle rec = new Rectangle(x*rectSizex + (rectSizex/2), y*rectSizey , rectSizex/2, rectSizey/2 );
+        Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
         imagesBots.add(rec);
         imagesPaintBots.add(new TexturePaint(image3, rec));
     }
@@ -151,7 +158,7 @@ public class Map extends JPanel{
         bots.get(botIndex).setXpos(x);
         bots.get(botIndex).setYpos(y);
         if(botIndex!=-1){
-            Rectangle rec = new Rectangle(x*rectSizex + (rectSizex/2), y*rectSizey , rectSizex/2, rectSizey/2 );
+            Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
             imagesBots.set(botIndex, rec);
             imagesPaintBots.set(botIndex, new TexturePaint(image3, rec));
             repaint();

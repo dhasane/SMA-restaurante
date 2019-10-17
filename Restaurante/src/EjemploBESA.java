@@ -23,12 +23,14 @@ public class EjemploBESA {
     public static int GAME_PERIODIC_TIME = 1000;
     public static int GAME_PERIODIC_DELAY_TIME = 100;
 
-    public static void main(String[] args) throws ExceptionBESA {
+    private static double clave = 0.91;
 
+
+    public static void main(String[] args) throws ExceptionBESA {
 
         AdmBESA admLocal = AdmBESA.getInstance();
 
-        int tamx = 11;
+        int tamx = 20;
         int tamy = 5;
         int nsuciedad = 11;
 
@@ -36,14 +38,15 @@ public class EjemploBESA {
 
         crearAgentes( tamx, tamy , 5 );
 
+        // creo que esto es para la "sincronizacion" de tiempo de los agentes
         PeriodicDataBESA data  = new PeriodicDataBESA(GAME_PERIODIC_TIME, GAME_PERIODIC_DELAY_TIME, PeriodicGuardBESA.START_PERIODIC_CALL);
         EventBESA startPeriodicEv = new EventBESA(GameGuard.class.getName(), data);
         AgHandlerBESA ah = admLocal.getHandlerByAlias("WORLD");
         ah.sendEvent(startPeriodicEv);
 
-
     }
 
+    // crea el mapa (restaurante)
     public static void crearRestaurante( int tamx , int tamy , int nsuciedad ) throws ExceptionBESA
     {
         WorldState ws = new WorldState( tamx , tamy , nsuciedad );
@@ -53,21 +56,24 @@ public class EjemploBESA {
         wrlStruct.addBehavior("ChangeBehavior");
         wrlStruct.bindGuard("ChangeBehavior", SubscribeGuard.class);
         wrlStruct.bindGuard("ChangeBehavior", UpdateGuard.class);
-        WorldAgent wa = new WorldAgent("WORLD", ws, wrlStruct, 0.91);
+        WorldAgent wa = new WorldAgent("WORLD", ws, wrlStruct, clave );
         wa.start();
     }
 
+    // crea varios agentes
     public static void crearAgentes( int x , int y , int cantidad ) throws ExceptionBESA
     {
         for ( int a = 0 ; a < cantidad ; ++a )
-            agente( x, "C"+Integer.toString( a ) );
+            agente( x, y, "C"+Integer.toString( a ) );
     }
 
-    public static void agente( int size, String name ) throws ExceptionBESA {
+    // crea un unico agente, pasandole el tamaño del mapa y su nombre
+    public static void agente( int sizex, int sizey, String name ) throws ExceptionBESA
+    {
         StructBESA c1Struct = new StructBESA();
         c1Struct.addBehavior("playerPerception");
         c1Struct.bindGuard("playerPerception", SensorGuard.class);
-        CleanerAgent cleaner = new CleanerAgent( name, new CleanerState(size), c1Struct, 0.91 );
+        CleanerAgent cleaner = new CleanerAgent( name, new CleanerState(sizex, sizey), c1Struct, clave );
         cleaner.start();
     }
 

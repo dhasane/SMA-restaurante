@@ -10,16 +10,13 @@ import Cleaner.Behavior.SensorGuard;
 import Data.SensorData;
 import World.State.WorldState;
 
-/**
- *
- * @author Andres
- */
 public class GameGuard extends PeriodicGuardBESA{
 
     @Override
     public void funcPeriodicExecGuard(EventBESA ebesa) {
         WorldState ws = (WorldState)this.getAgent().getState();
-        for (int i = 0; i < ws.getBotsAlias().size(); i++) {
+        for (int i = 0; i < ws.getBotsAlias().size(); i++)
+        {
             DataBESA data = new SensorData(ws.getMap().getDust());
             EventBESA event = new EventBESA(SensorGuard.class.getName(), data);
             AgHandlerBESA ah;
@@ -31,5 +28,5 @@ public class GameGuard extends PeriodicGuardBESA{
             }
         }
     }
-    
+
 }

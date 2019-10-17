@@ -9,26 +9,14 @@ import Model.WorldObject;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Andres
- */
 public class CleanerState extends  StateBESA{
-    
-    int sizeMap;
+
     int x;
     int y;
 
-    public CleanerState(int sizeMap) {
-        this.sizeMap = sizeMap;
-    }
-
-    public int getSizeMap() {
-        return sizeMap;
-    }
-
-    public void setSizeMap(int sizeMap) {
-        this.sizeMap = sizeMap;
+    public CleanerState(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {
