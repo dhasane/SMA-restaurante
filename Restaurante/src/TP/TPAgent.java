@@ -9,27 +9,28 @@ import BESA.Kernell.Agent.StateBESA;
 import BESA.Kernell.Agent.StructBESA;
 import BESA.Kernell.System.Directory.AgHandlerBESA;
 import BESA.Log.ReportBESA;
-import Cliente.State.ClienteState;
 import Data.SubscribeData;
+import TP.State.TPState;
 import World.Behavior.SubscribeGuard;
-import java.util.Random;
 
 public class TPAgent extends AgentBESA {
 
-    public TPAgent(String alias, StateBESA state, StructBESA structAgent, double passwd) throws KernellAgentExceptionBESA {
+    private int x;
+    private int y;
+
+    public TPAgent(String alias, StateBESA state, StructBESA structAgent, double passwd, int x, int y) throws KernellAgentExceptionBESA {
         super(alias, state, structAgent, passwd);
+        this.x = x;
+        this.y = y;
     }
 
     @Override
     public void setupAgent() {
         ReportBESA.info("SETUP AGENT -> " + getAlias());
-        ClienteState cs = (ClienteState)this.getState();
-        Random r = new Random();
-        int initialx = r.nextInt(cs.getX());
-        int initialy = r.nextInt(cs.getY());
-        cs.setX(initialx);
-        cs.setY(initialy);
-        DataBESA data = new SubscribeData(this.getAlias(), initialx, initialy);
+        TPState cs = (TPState)this.getState();
+        cs.setX(this.x);
+        cs.setY(this.y);
+        DataBESA data = new SubscribeData(this.getAlias(), this.x, this.y);
         EventBESA event = new EventBESA(SubscribeGuard.class.getName(), data);
         AgHandlerBESA ah;
 

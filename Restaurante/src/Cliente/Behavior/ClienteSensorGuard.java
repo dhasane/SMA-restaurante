@@ -27,18 +27,42 @@ public class ClienteSensorGuard extends GuardBESA{
     public void funcExecGuard(EventBESA ebesa) {
 
         ClienteState cs = (ClienteState) this.getAgent().getState();
+        if ( cs.hasEaten() )
+        {
+            System.out.println("ya comio");
+            return;
+        }
+        else
+        {
+            System.out.println("busca comida");
+            buscarComida(cs, ebesa);
+        }
+
+
+    }
+
+    private void buscarComida(ClienteState cs, EventBESA ebesa)
+    {
+        System.out.println("guard cliente");
+
         SensorData data = (SensorData) ebesa.getData();
 
         int nearestDust = -1;
         double nearestDistance = Double.MAX_VALUE;
-        for (int i = 0; i < data.getComida().size(); i++) {
+
+        // se consigue el objeto mas cercano
+        for (int i = 0; i < data.getComida().size(); i++)
+        {
             double distance =  Math.sqrt(Math.pow(cs.getX() - data.getComida().get(i).getXpos(), 2)
                                 + Math.pow(cs.getY() - data.getComida().get(i).getYpos(), 2));
-            if(distance < nearestDistance){
+            if(distance < nearestDistance)
+            {
                 nearestDistance = distance;
                 nearestDust = i;
             }
         }
+
+        System.out.println("guard cliente");
 
         if( nearestDust==-1 )
         {
@@ -71,6 +95,8 @@ public class ClienteSensorGuard extends GuardBESA{
         DataBESA dataAction;
         if(nuevox == cs.getX() && nuevoy == cs.getY())
         {
+            System.out.println("comiendo");
+            cs.eat();
             dataAction = new ActionData(this.getAgent().getAlias(), "clean");
         }
         else

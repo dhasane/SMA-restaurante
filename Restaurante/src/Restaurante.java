@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import BESA.ExceptionBESA;
 import BESA.Kernell.Agent.Event.EventBESA;
 import BESA.Kernell.Agent.PeriodicGuardBESA;
@@ -5,19 +8,17 @@ import BESA.Kernell.Agent.StructBESA;
 import BESA.Kernell.System.AdmBESA;
 import BESA.Kernell.System.Directory.AgHandlerBESA;
 import BESA.Util.PeriodicDataBESA;
-
-import Cliente.ClienteAgent;
-import Cliente.Behavior.ClienteSensorGuard;
-import Cliente.State.ClienteState;
-
 import Cocinero.CocineroAgent;
 import Cocinero.Behavior.CocineroSensorGuard;
 import Cocinero.State.CocineroState;
+import Creator.ClientCreator;
+import Creator.TPCreator;
 import World.WorldAgent;
 import World.Behavior.GameGuard;
 import World.Behavior.SubscribeGuard;
 import World.Behavior.UpdateGuard;
 import World.State.WorldState;
+import javafx.util.Pair;
 
 public class Restaurante {
 
@@ -30,15 +31,23 @@ public class Restaurante {
     public static void main(String[] args) throws ExceptionBESA {
 
         AdmBESA admLocal = AdmBESA.getInstance();
-
+        ClientCreator.setClave(clave);
+        TPCreator.setClave(clave);
+        
+        List <Pair<Integer, Integer> > positions = new ArrayList< Pair<Integer,Integer> >();
+        positions.add( new Pair<>(1, 2) );
+        positions.add( new Pair<>(2, 2) );
+        
+        
         int tamx = 20;
         int tamy = 5;
         int nsuciedad = 11;
 
         crearRestaurante( tamx, tamy, nsuciedad );
 
-        crearClientes( tamx, tamy , 2 );
-
+        ClientCreator.crearClientes( tamx, tamy , 1 );
+        
+        TPCreator.crearTP(tamx , tamy, positions);
         // crearCocineros( tamx, tamy , 3 );
 
         // creo que esto es para la "sincronizacion" de tiempo de los agentes
@@ -80,20 +89,6 @@ public class Restaurante {
 
     }
 
-    // crea varios agentes
-    public static void crearClientes( int x , int y , int cantidad ) throws ExceptionBESA
-    {
-        for ( int a = 0 ; a < cantidad ; ++a )
-            cliente( x, y, "CL"+Integer.toString( a ) );
-    }
-
-    // crea un unico agente, pasandole el tamaño del mapa y su nombre
-    public static void cliente( int sizex, int sizey, String name ) throws ExceptionBESA
-    {
-        StructBESA c1Struct = new StructBESA();
-        c1Struct.addBehavior("playerPerception");
-        c1Struct.bindGuard("playerPerception", ClienteSensorGuard.class);
-        ( new ClienteAgent( name, new ClienteState(sizex, sizey), c1Struct, clave ) ).start();
-    }
+    
 
 }
