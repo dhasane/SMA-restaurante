@@ -2,10 +2,6 @@ package Data;
 
 import BESA.Kernell.Agent.Event.DataBESA;
 
-/**
- *
- * @author Andres
- */
 public class ActionData extends DataBESA {
     
     String alias;

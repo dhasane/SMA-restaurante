@@ -1,4 +1,4 @@
-package restaurante;
+package World;
 
 import BESA.Kernell.Agent.AgentBESA;
 import BESA.Kernell.Agent.KernellAgentExceptionBESA;

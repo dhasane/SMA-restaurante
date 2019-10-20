@@ -2,19 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Cleaner.State;
+package TP.State;
 
 import BESA.Kernell.Agent.StateBESA;
 import Model.WorldObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CleanerState extends  StateBESA{
+public class TPState extends  StateBESA{
 
     int x;
     int y;
 
-    public CleanerState(int x, int y) {
+    public TPState(int x, int y) {
         this.x = x;
         this.y = y;
     }

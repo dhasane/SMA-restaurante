@@ -6,7 +6,7 @@ import BESA.Kernell.Agent.Event.EventBESA;
 import BESA.Kernell.Agent.PeriodicGuardBESA;
 import BESA.Kernell.System.Directory.AgHandlerBESA;
 import BESA.Log.ReportBESA;
-import Cleaner.Behavior.SensorGuard;
+import Cliente.Behavior.ClienteSensorGuard;
 import Data.SensorData;
 import World.State.WorldState;
 
@@ -18,7 +18,7 @@ public class GameGuard extends PeriodicGuardBESA{
         for (int i = 0; i < ws.getBotsAlias().size(); i++)
         {
             DataBESA data = new SensorData(ws.getMap().getDust());
-            EventBESA event = new EventBESA(SensorGuard.class.getName(), data);
+            EventBESA event = new EventBESA(ClienteSensorGuard.class.getName(), data);
             AgHandlerBESA ah;
             try {
                 ah = getAgent().getAdmLocal().getHandlerByAlias(ws.getBotsAlias().get(i));

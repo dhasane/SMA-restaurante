@@ -1,4 +1,4 @@
- package Cleaner;
+ package Cocinero;
 
 import BESA.ExceptionBESA;
 import BESA.Kernell.Agent.AgentBESA;
@@ -9,27 +9,46 @@ import BESA.Kernell.Agent.StateBESA;
 import BESA.Kernell.Agent.StructBESA;
 import BESA.Kernell.System.Directory.AgHandlerBESA;
 import BESA.Log.ReportBESA;
-import Cleaner.State.CleanerState;
+import Cocinero.State.CocineroState;
 import Data.SubscribeData;
 import World.Behavior.SubscribeGuard;
 import java.util.Random;
 
-public class CleanerAgent extends AgentBESA {
+public class CocineroAgent extends AgentBESA {
 
-    public CleanerAgent(String alias, StateBESA state, StructBESA structAgent, double passwd) throws KernellAgentExceptionBESA {
-        super(alias, state, structAgent, passwd);
+    public CocineroAgent(String alias, StateBESA state, StructBESA structAgent, double passwd ) throws KernellAgentExceptionBESA {
+    	super(alias, state, structAgent, passwd);
+
     }
 
+    // public void locate( int x, int y )
+    // {
+    //     System.out.println( x + "  " + y);
+    //     CocineroState cs = (CocineroState) this.getState();
+    //     cs.setX(x);
+    //     cs.setY(y);
+    //     DataBESA data = new SubscribeData(this.getAlias(), cs.getX(), cs.getY() );
+    //     EventBESA event = new EventBESA(SubscribeGuard.class.getName(), data);
+    //     AgHandlerBESA ah;
+    //
+    //     try {
+    //         ah = this.getAdmLocal().getHandlerByAlias("WORLD");
+    //         ah.sendEvent(event);
+    //     } catch (ExceptionBESA e) {
+    //         ReportBESA.error(e);
+    //     }
+    // }
+
     @Override
-    public void setupAgent() {
+    public void setupAgent( ) {
         ReportBESA.info("SETUP AGENT -> " + getAlias());
-        CleanerState cs = (CleanerState)this.getState();
+        CocineroState cs = (CocineroState) this.getState();
         Random r = new Random();
         int initialx = r.nextInt(cs.getX());
         int initialy = r.nextInt(cs.getY());
         cs.setX(initialx);
         cs.setY(initialy);
-        DataBESA data = new SubscribeData(this.getAlias(), initialx, initialy);
+        DataBESA data = new SubscribeData(this.getAlias(), cs.getX(), cs.getY() );
         EventBESA event = new EventBESA(SubscribeGuard.class.getName(), data);
         AgHandlerBESA ah;
 

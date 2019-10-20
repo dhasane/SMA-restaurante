@@ -10,10 +10,6 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Andres
- */
 public class Map extends JPanel{
 
     private int sizex;              // tamaño en x
@@ -24,9 +20,11 @@ public class Map extends JPanel{
     private List<WorldObject> dust;
     private List<WorldObject> bots;
 
-    private BufferedImage image  = Map.getBufferedImage("baldosa.jpg", this);
-    private BufferedImage image2 = Map.getBufferedImage("baldosa2.jpg", this);
-    private BufferedImage image3 = Map.getBufferedImage("cleanerbot.jpg", this);
+    private BufferedImage image         = Map.getBufferedImage("img/world/baldosa.jpg", this);
+    private BufferedImage baldosaCocina = Map.getBufferedImage("img/world/baldosaCocina.jpg", this);
+    private BufferedImage meson         = Map.getBufferedImage("img/world/meson.jpg", this);
+    private BufferedImage cleanerbot    = Map.getBufferedImage("img/agents/cleanerbot.jpg", this);
+    private BufferedImage suciedad      = Map.getBufferedImage("img/objects/suciedad.jpg", this);
 
     private List<Rectangle> imagesRect;
     private List<TexturePaint> imagesPaint;
@@ -39,17 +37,17 @@ public class Map extends JPanel{
         this.sizex = sizex;
         this.sizey = sizey;
 
-        this.bots = new ArrayList<>();
-        this.dust = new ArrayList<>();
-        imagesRect = new ArrayList<>();
-        imagesPaint = new ArrayList<>();
-        imagesDust = new ArrayList<>();
+        int corte = 15; // inicio de la cocina
+
+        this.bots       = new ArrayList<>();
+        this.dust       = new ArrayList<>();
+        imagesRect      = new ArrayList<>();
+        imagesPaint     = new ArrayList<>();
+        imagesDust      = new ArrayList<>();
         imagesPaintDust = new ArrayList<>();
-        imagesBots = new ArrayList<>();
+        imagesBots      = new ArrayList<>();
         imagesPaintBots = new ArrayList<>();
 
-        // width  = 600/sizex;
-        // height = 600/sizey;
         width  = square;
         height = square;
 
@@ -61,15 +59,25 @@ public class Map extends JPanel{
             dust.add(new WorldObject(x, y, "dust_"+i));
             Rectangle rec = new Rectangle( x*width, y*height + (height/2), width/2, height/2 );
             imagesDust.add(rec);
-            imagesPaintDust.add(new TexturePaint(image2, rec));
+            imagesPaintDust.add(new TexturePaint(suciedad, rec));
         }
 
-
-
+        // organizacion de los tiles
         for (int i = 0; i < sizex*sizey; i++) {
             Rectangle rec = new Rectangle( (i%sizex)*width, (i/sizex)*height, width, height );
             imagesRect.add(rec);
-            imagesPaint.add(new TexturePaint(image, rec));
+            if ( i%sizex < corte )
+            {
+                imagesPaint.add(new TexturePaint(image, rec));
+            }
+            else if ( i%sizex == corte )
+            {
+                imagesPaint.add(new TexturePaint(meson, rec));
+            }
+            else
+            {
+                imagesPaint.add(new TexturePaint(baldosaCocina, rec));
+            }
         }
 
     }
@@ -139,7 +147,7 @@ public class Map extends JPanel{
         bots.add(new WorldObject(x, y, alias));
         Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
         imagesBots.add(rec);
-        imagesPaintBots.add(new TexturePaint(image3, rec));
+        imagesPaintBots.add(new TexturePaint(cleanerbot, rec));
     }
 
     public void clean(String alias) {
@@ -160,7 +168,7 @@ public class Map extends JPanel{
         if(botIndex!=-1){
             Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
             imagesBots.set(botIndex, rec);
-            imagesPaintBots.set(botIndex, new TexturePaint(image3, rec));
+            imagesPaintBots.set(botIndex, new TexturePaint(cleanerbot, rec));
             repaint();
         }
 

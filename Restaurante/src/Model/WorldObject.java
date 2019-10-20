@@ -1,9 +1,5 @@
 package Model;
 
-/**
- *
- * @author Andres
- */
 public class WorldObject {
     private int xpos;
     private int ypos;
@@ -38,6 +34,6 @@ public class WorldObject {
     public void setYpos(int ypos) {
         this.ypos = ypos;
     }
-    
-    
+
+
 }

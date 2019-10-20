@@ -24,10 +24,6 @@ public class WorldState extends StateBESA{
         return map;
     }
 
-    public void setMap(Map map) {
-        this.map = map;
-    }
-
     public List<String> getBotsAlias() {
         return botsAlias;
     }
