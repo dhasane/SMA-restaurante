@@ -8,10 +8,7 @@ import BESA.Kernell.Agent.StateBESA;
 
 public class ClienteState extends  StateBESA{
 
-    /**
-	 *
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private boolean food;
 
@@ -31,7 +28,7 @@ public class ClienteState extends  StateBESA{
 
     public void eat()
     {
-        this.eat = true;
+        this.food = true;
     }
 
     public int getX() {
