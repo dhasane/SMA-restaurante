@@ -27,10 +27,6 @@ public class ClienteSensorGuard extends GuardBESA{
     public void funcExecGuard(EventBESA ebesa) {
 
         ClienteState cs = (ClienteState) this.getAgent().getState();
-        if( !cs.hasEaten() )
-        {
-            return;
-        }
         SensorData data = (SensorData) ebesa.getData();
 
         int nearestDust = -1;
@@ -44,9 +40,7 @@ public class ClienteSensorGuard extends GuardBESA{
             }
         }
 
-        System.out.println(cs.hasEaten());
-
-        if(nearestDust==-1 )
+        if( nearestDust==-1 )
         {
             return;
         }
