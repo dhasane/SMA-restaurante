@@ -15,22 +15,20 @@ import World.Behavior.SubscribeGuard;
 
 public class TPAgent extends AgentBESA {
 
-    private int x;
-    private int y;
-
     public TPAgent(String alias, StateBESA state, StructBESA structAgent, double passwd, int x, int y) throws KernellAgentExceptionBESA {
         super(alias, state, structAgent, passwd);
-        this.x = x;
-        this.y = y;
+
+        TPState cs = (TPState)this.getState();
+        cs.setX( x );
+        cs.setY( y );
     }
 
     @Override
     public void setupAgent() {
         ReportBESA.info("SETUP AGENT -> " + getAlias());
         TPState cs = (TPState)this.getState();
-        cs.setX(this.x);
-        cs.setY(this.y);
-        DataBESA data = new SubscribeData(this.getAlias(), this.x, this.y);
+        
+        DataBESA data = new SubscribeData(this.getAlias(), cs.getX(), cs.getY() );
         EventBESA event = new EventBESA(SubscribeGuard.class.getName(), data);
         AgHandlerBESA ah;
 

@@ -8,10 +8,8 @@ import BESA.Kernell.Agent.StructBESA;
 import BESA.Kernell.System.AdmBESA;
 import BESA.Kernell.System.Directory.AgHandlerBESA;
 import BESA.Util.PeriodicDataBESA;
-import Cocinero.CocineroAgent;
-import Cocinero.Behavior.CocineroSensorGuard;
-import Cocinero.State.CocineroState;
 import Creator.ClientCreator;
+import Creator.CocineroCreator;
 import Creator.TPCreator;
 import World.WorldAgent;
 import World.Behavior.GameGuard;
@@ -33,6 +31,7 @@ public class Restaurante {
         AdmBESA admLocal = AdmBESA.getInstance();
         ClientCreator.setClave(clave);
         TPCreator.setClave(clave);
+        CocineroCreator.setClave(clave);
         
         List <Pair<Integer, Integer> > positions = new ArrayList< Pair<Integer,Integer> >();
         positions.add( new Pair<>(1, 2) );
@@ -72,22 +71,6 @@ public class Restaurante {
         wa.start();
     }
 
-    // crea varios agentes
-    public static void crearCocineros( int x , int y , int cantidad ) throws ExceptionBESA
-    {
-        for ( int a = 0 ; a < cantidad ; ++a )
-            cocinero( x, y, "CO"+Integer.toString( a ) );
-    }
-
-    // crea un unico agente, pasandole el tamaño del mapa y su nombre
-    public static void cocinero( int sizex, int sizey, String name ) throws ExceptionBESA
-    {
-        StructBESA c1Struct = new StructBESA();
-        c1Struct.addBehavior("CocineroplayerPerception");
-        c1Struct.bindGuard("CocineroplayerPerception", CocineroSensorGuard.class);
-        ( new CocineroAgent( name, new CocineroState(sizex, sizey), c1Struct, clave ) ).start() ;
-
-    }
 
     
 

@@ -5,10 +5,6 @@ import Model.Map;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Andres
- */
 public class WorldState extends StateBESA{
 
     private Map map;

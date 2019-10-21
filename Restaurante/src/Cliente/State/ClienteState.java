@@ -11,12 +11,14 @@ public class ClienteState extends  StateBESA{
     private static final long serialVersionUID = 1L;
 
     private boolean food;
+    private boolean seated;
 
     private int x;
     private int y;
 
     public ClienteState(int x, int y) {
         this.food = false;
+        this.seated = false;
         this.x = x;
         this.y = y;
     }
@@ -46,4 +48,16 @@ public class ClienteState extends  StateBESA{
     public void setY(int y) {
         this.y = y;
     }
+    
+    public boolean getSeated() {
+    	return this.seated;
+    }
+
+    public void sit() {
+		this.seated = true;
+	}
+    
+    public void getUp() {
+		this.seated = false;
+	}
 }

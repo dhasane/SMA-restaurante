@@ -6,14 +6,9 @@ package World.Behavior;
 
 import BESA.Kernell.Agent.Event.EventBESA;
 import BESA.Kernell.Agent.GuardBESA;
-import BESA.Kernell.Agent.PeriodicGuardBESA;
 import Data.ActionData;
 import World.State.WorldState;
 
-/**
- *
- * @author Andres
- */
 public class UpdateGuard extends GuardBESA{
 
     

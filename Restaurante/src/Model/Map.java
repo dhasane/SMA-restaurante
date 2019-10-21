@@ -12,7 +12,10 @@ import javax.swing.JPanel;
 
 public class Map extends JPanel{
 
-    private int sizex;              // tamaño en x
+   
+	private static final long serialVersionUID = 1L;
+	
+	private int sizex;              // tamaño en x
     private int sizey;              // tamaño en y
     private int width;
     private int height;
@@ -23,7 +26,13 @@ public class Map extends JPanel{
     private BufferedImage image         = Map.getBufferedImage("img/world/baldosa.jpg", this);
     private BufferedImage baldosaCocina = Map.getBufferedImage("img/world/baldosaCocina.jpg", this);
     private BufferedImage meson         = Map.getBufferedImage("img/world/meson.jpg", this);
-    private BufferedImage cleanerbot    = Map.getBufferedImage("img/agents/cleanerbot.jpg", this);
+
+//    private BufferedImage cleanerbot    = Map.getBufferedImage("img/agents/cleanerbot.jpg", this);
+    private BufferedImage cliente    	= Map.getBufferedImage("img/agents/cliente.jpg", this);
+    private BufferedImage clienteSentado= Map.getBufferedImage("img/agents/clienteSentado.jpg", this);
+    private BufferedImage cocinero   	= Map.getBufferedImage("img/agents/cocinero.jpg", this);
+    private BufferedImage tp    		= Map.getBufferedImage("img/agents/tp.jpg", this);
+    
     private BufferedImage suciedad      = Map.getBufferedImage("img/objects/suciedad.jpg", this);
 
     private List<Rectangle> imagesRect;
@@ -142,12 +151,33 @@ public class Map extends JPanel{
         frame.setVisible(true);
         return(frame);
     }
+    
+//    public void addBot(String alias, int x, int y) {
+//        bots.add(new WorldObject(x, y, alias));
+//        Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
+//        imagesBots.add(rec);
+//        imagesPaintBots.add(new TexturePaint(cleanerbot, rec));
+//    }
 
-    public void addBot(String alias, int x, int y) {
+    public void addCliente(String alias, int x, int y) {
         bots.add(new WorldObject(x, y, alias));
         Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
         imagesBots.add(rec);
-        imagesPaintBots.add(new TexturePaint(cleanerbot, rec));
+        imagesPaintBots.add(new TexturePaint(cliente, rec));
+    }
+    
+    public void addCocinero(String alias, int x, int y) {
+        bots.add(new WorldObject(x, y, alias));
+        Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
+        imagesBots.add(rec);
+        imagesPaintBots.add(new TexturePaint(cocinero, rec));
+    }
+    
+    public void addTP(String alias, int x, int y) {
+        bots.add(new WorldObject(x, y, alias));
+        Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
+        imagesBots.add(rec);
+        imagesPaintBots.add(new TexturePaint(tp, rec));
     }
 
     public void clean(String alias) {
@@ -168,7 +198,22 @@ public class Map extends JPanel{
         if(botIndex!=-1){
             Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
             imagesBots.set(botIndex, rec);
-            imagesPaintBots.set(botIndex, new TexturePaint(cleanerbot, rec));
+            // TODO hacer para que el movimiento no afecte al agente que se mueve 
+            imagesPaintBots.set(botIndex, new TexturePaint(cliente, rec));
+            repaint();
+        }
+
+    }
+    
+    // aqui solo puede sentarse el cliente 
+    public void sit(String alias, int x, int y) {
+        int botIndex = find(this.bots, alias);
+        bots.get(botIndex).setXpos(x);
+        bots.get(botIndex).setYpos(y);
+        if(botIndex!=-1){
+            Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
+            imagesBots.set(botIndex, rec);
+            imagesPaintBots.set(botIndex, new TexturePaint(clienteSentado, rec));
             repaint();
         }
 

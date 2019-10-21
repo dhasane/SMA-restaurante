@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SensorData extends DataBESA{
-    private List<WorldObject> comida;
+
+	private static final long serialVersionUID = 1L;
+	
+	private List<WorldObject> comida;
     private List<WorldObject> sillas;
 
 
@@ -20,6 +23,10 @@ public class SensorData extends DataBESA{
 
     public List<WorldObject> getComida() {
         return comida;
+    }
+    
+    public List<WorldObject> getSillas() {
+        return sillas;
     }
 
     public void setComida(List<WorldObject> comida) {
