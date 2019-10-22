@@ -15,10 +15,12 @@ public class SensorData extends DataBESA{
 
     public SensorData() {
         comida = new ArrayList<>();
+        sillas = new ArrayList<>();
     }
 
-    public SensorData(List<WorldObject> comida) {
+    public SensorData(List<WorldObject> comida, List<WorldObject> sillas ) {
         this.comida = comida;
+        this.sillas = sillas;
     }
 
     public List<WorldObject> getComida() {

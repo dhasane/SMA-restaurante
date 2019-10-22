@@ -43,10 +43,11 @@ public class ClienteSensorGuard extends GuardBESA{
         }
 
     }
-
+    
+    // busca una silla, va y se sienta
     private void goSit(ClienteState cs, EventBESA ebesa)
     {
-//        System.out.println("guard cliente");
+
 
         SensorData data = (SensorData) ebesa.getData();
 
@@ -54,7 +55,7 @@ public class ClienteSensorGuard extends GuardBESA{
         double nearestDistance = Double.MAX_VALUE;
 
         // se consigue el objeto mas cercano
-        for (int i = 0; i < data.getSillas().size(); i++)
+        for (int i = 0; i < data.getSillas().size(); i++) 
         {
             double distance =  Math.sqrt(Math.pow(cs.getX() - data.getSillas().get(i).getXpos(), 2)
                                 + Math.pow(cs.getY() - data.getSillas().get(i).getYpos(), 2));
@@ -100,7 +101,7 @@ public class ClienteSensorGuard extends GuardBESA{
         {
             System.out.println("sentandose");
             cs.sit();
-            dataAction = new ActionData(this.getAgent().getAlias(), "sit");
+            dataAction = new ActionData(this.getAgent().getAlias(), "sit", nuevox, nuevoy);
         }
         else
         {

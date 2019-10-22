@@ -14,8 +14,6 @@ public class SubscribeGuard extends GuardBESA{
         ws.getBotsAlias().add(data.getAlias());
         String nom = "" + data.getAlias().charAt(0) + data.getAlias().charAt(1);
         
-        System.out.println( nom );
-        
         if ( nom.equals("CL"))
         {
         	ws.getMap().addCliente(data.getAlias(), data.getX(), data.getY());
@@ -23,6 +21,14 @@ public class SubscribeGuard extends GuardBESA{
         else if ( nom.equals("TP"))
         {
         	ws.getMap().addTP(data.getAlias(), data.getX(), data.getY());
+        }
+        else if ( nom.equals("EP"))
+        {
+        	ws.getMap().addEP(data.getAlias(), data.getX(), data.getY());
+        }
+        else if ( nom.equals("CO"))
+        {
+        	ws.getMap().addCO(data.getAlias(), data.getX(), data.getY());
         }
         
         

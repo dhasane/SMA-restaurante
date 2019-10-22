@@ -23,6 +23,9 @@ public class UpdateGuard extends GuardBESA{
             case "move":
                 state.move(data.getAlias(), data.getX(), data.getY());
                 break;
+            case "sit":
+                state.sit(data.getAlias(), data.getX(), data.getY());
+                break;
         }
     }
     

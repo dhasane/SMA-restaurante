@@ -10,6 +10,7 @@ import BESA.Kernell.System.Directory.AgHandlerBESA;
 import BESA.Util.PeriodicDataBESA;
 import Creator.ClientCreator;
 import Creator.CocineroCreator;
+import Creator.EPCreator;
 import Creator.TPCreator;
 import World.WorldAgent;
 import World.Behavior.GameGuard;
@@ -25,28 +26,48 @@ public class Restaurante {
 
     private static double clave = 0.91;
 
-
+    
+    // EP -> entrega pedido
+    // TP -> toma pedido
+    // CO -> cocinero
+    // CL -> cliente 
+    // CA -> caja
+    // AY -> ayudante // TODO
+    
+    
     public static void main(String[] args) throws ExceptionBESA {
 
         AdmBESA admLocal = AdmBESA.getInstance();
         ClientCreator.setClave(clave);
         TPCreator.setClave(clave);
+        EPCreator.setClave(clave);
         CocineroCreator.setClave(clave);
-        
-        List <Pair<Integer, Integer> > positions = new ArrayList< Pair<Integer,Integer> >();
-        positions.add( new Pair<>(1, 2) );
-        positions.add( new Pair<>(2, 2) );
-        
-        
+
+
+        int cocinaInicio = 15;
         int tamx = 20;
         int tamy = 5;
-        int nsuciedad = 11;
 
-        crearRestaurante( tamx, tamy, nsuciedad );
+        List <Pair<Integer, Integer> > tpPos = new ArrayList< Pair<Integer,Integer> >();
+        tpPos.add( new Pair<>( tamx/2     , tamy -1 ) );
+        tpPos.add( new Pair<>( tamx/2 + 1 , tamy -1 ) );
 
-        ClientCreator.crearClientes( tamx, tamy , 1 );
-        
-        TPCreator.crearTP(tamx , tamy, positions);
+        List <Pair<Integer, Integer> > sillas = new ArrayList< Pair<Integer,Integer> >();
+        sillas.add( new Pair<>(1, 2) );
+        sillas.add( new Pair<>(2, 2) );
+
+        List <Pair<Integer, Integer> > entregas = new ArrayList< Pair<Integer,Integer> >();
+        sillas.add( new Pair<>( cocinaInicio, 2) );
+        sillas.add( new Pair<>( cocinaInicio, 3) );
+
+        crearRestaurante( tamx, tamy, cocinaInicio, sillas );
+
+        ClientCreator.crearClientes( tamx, tamy , 2 );
+
+        TPCreator.crearTP(tamx , tamy, tpPos);
+
+        EPCreator.crearEP(tamx, tamy, entregas);
+
         // crearCocineros( tamx, tamy , 3 );
 
         // creo que esto es para la "sincronizacion" de tiempo de los agentes
@@ -58,20 +79,20 @@ public class Restaurante {
     }
 
     // crea el mapa (restaurante)
-    public static void crearRestaurante( int tamx , int tamy , int nsuciedad ) throws ExceptionBESA
+    public static void crearRestaurante( int tamx , int tamy, int cocinaInicio , List<Pair<Integer, Integer>> sillas ) throws ExceptionBESA
     {
-        WorldState ws = new WorldState( tamx , tamy , nsuciedad );
+        WorldState ws = new WorldState( tamx , tamy, cocinaInicio , sillas );
         StructBESA wrlStruct = new StructBESA();
         wrlStruct.addBehavior("WorldBehavior");
         wrlStruct.bindGuard("WorldBehavior", GameGuard.class);
         wrlStruct.addBehavior("ChangeBehavior");
+
         wrlStruct.bindGuard("ChangeBehavior", SubscribeGuard.class);
         wrlStruct.bindGuard("ChangeBehavior", UpdateGuard.class);
-        WorldAgent wa = new WorldAgent("WORLD", ws, wrlStruct, clave );
-        wa.start();
+        ( new WorldAgent("WORLD", ws, wrlStruct, clave ) ).start();
     }
 
 
-    
+
 
 }

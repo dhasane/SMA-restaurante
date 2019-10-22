@@ -2,16 +2,20 @@ package World.State;
 
 import BESA.Kernell.Agent.StateBESA;
 import Model.Map;
+import javafx.util.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class WorldState extends StateBESA{
 
-    private Map map;
+	private static final long serialVersionUID = 1L;
+	
+	private Map map;
     private List<String> botsAlias;
 
-    public WorldState(int sizex, int sizey, int numOfDust) {
-        map = new Map(sizex , sizey, numOfDust, 50);
+    public WorldState(int sizex, int sizey, int cocinaInicio, List< Pair<Integer, Integer> > posSillas ) {
+        map = new Map(sizex , sizey, cocinaInicio, posSillas, 50);
         botsAlias = new ArrayList<>();
         Map.openInJFrame(map, 50*(sizex+1), 50*(sizey+1) );
     }
@@ -34,5 +38,9 @@ public class WorldState extends StateBESA{
 
     public void move(String alias, int x, int y) {
         map.move(alias,x,y);
+    }
+    
+    public void sit(String alias, int x, int y) {
+        map.sit(alias,x,y);
     }
 }
