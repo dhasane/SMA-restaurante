@@ -9,7 +9,7 @@ import EP.Behavior.EPSensorGuard;
 import EP.State.EPState;
 import javafx.util.Pair;
 
-// entrega pedido
+
 public class EPCreator {
 	
 	private static double clave;

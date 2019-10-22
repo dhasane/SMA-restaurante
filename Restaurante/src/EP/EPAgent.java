@@ -11,7 +11,6 @@ import BESA.Kernell.System.Directory.AgHandlerBESA;
 import BESA.Log.ReportBESA;
 import Data.SubscribeData;
 import EP.State.EPState;
-import TP.State.TPState;
 import World.Behavior.SubscribeGuard;
 
 public class EPAgent extends AgentBESA {

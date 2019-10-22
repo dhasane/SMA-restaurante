@@ -4,19 +4,37 @@
  */
 package EP.State;
 
+
+import java.util.Deque;
+
 import BESA.Kernell.Agent.StateBESA;
-import Model.WorldObject;
-import java.util.ArrayList;
-import java.util.List;
+import Model.Food;
 
 public class EPState extends  StateBESA{
 
-    int x;
+	private static final long serialVersionUID = 1L;
+
+	int x;
     int y;
+    Deque<Food> comida;
 
     public EPState(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+    
+    public void add( Food f )
+    {
+    	this.comida.add(f);
+    }
+    
+    public int size( )
+    {
+    	return this.comida.size();
+    }
+    
+    public Food get() {
+    	return this.comida.pop();
     }
 
     public int getX() {

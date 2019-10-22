@@ -169,40 +169,33 @@ public class Map extends JPanel{
         frame.setVisible(true);
         return(frame);
     }
-
-//    public void addBot(String alias, int x, int y) {
-//        bots.add(new WorldObject(x, y, alias));
-//        Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
-//        imagesBots.add(rec);
-//        imagesPaintBots.add(new TexturePaint(cleanerbot, rec));
-//    }
-
-    public void addCliente(String alias, int x, int y) {
-        bots.add(new WorldObject(x, y, alias));
-        Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
-        imagesBots.add(rec);
-        imagesPaintBots.add(new TexturePaint(cliente, rec));
-    }
-
-    public void addCO(String alias, int x, int y) {
-        bots.add(new WorldObject(x, y, alias));
-        Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
-        imagesBots.add(rec);
-        imagesPaintBots.add(new TexturePaint(cocinero, rec));
-    }
-
-    public void addTP(String alias, int x, int y) {
-        bots.add(new WorldObject(x, y, alias));
-        Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
-        imagesBots.add(rec);
-        imagesPaintBots.add(new TexturePaint(tp, rec));
-    }
     
-    public void addEP(String alias, int x, int y) {
+    public void addAgent(String alias, int x, int y ) {
+    	
+    	String nom = "" + alias.charAt(0) + alias.charAt(1);
+    	
+    	BufferedImage bi = null;
+    	
+    	switch ( nom )
+    	{
+    	case "CL":
+    		bi = cliente;
+    		break;
+    	case "TP":
+    		bi = tp;
+    		break;
+    	case "EP":
+    		bi = ep;
+    		break;
+    	case "CO":
+    		bi = cocinero;
+    		break;
+    	}
+    	
         bots.add(new WorldObject(x, y, alias));
         Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
         imagesBots.add(rec);
-        imagesPaintBots.add(new TexturePaint(ep, rec));
+        imagesPaintBots.add(new TexturePaint( bi , rec));
     }
 
     public void clean(String alias) {
@@ -213,6 +206,16 @@ public class Map extends JPanel{
             imagesComida.remove( foodIndex );
             imagesPaintComida.remove( foodIndex );
         }
+        repaint();
+    }
+    
+    public void ponerComida(String alias, int x, int y) {
+
+        comida.add( new WorldObject(x, y, "food_"+comida.size()) );
+        Rectangle rec = new Rectangle( x*width, y*height + (height/2), width/2, height/2 );
+        imagesComida.add( rec );
+        imagesPaintComida.remove( new TexturePaint(sillaImg, rec) );
+        
         repaint();
     }
     

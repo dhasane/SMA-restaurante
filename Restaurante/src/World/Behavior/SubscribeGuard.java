@@ -12,27 +12,9 @@ public class SubscribeGuard extends GuardBESA{
         SubscribeData data = (SubscribeData)ebesa.getData();
         WorldState ws = (WorldState)this.getAgent().getState();
         ws.getBotsAlias().add(data.getAlias());
-        String nom = "" + data.getAlias().charAt(0) + data.getAlias().charAt(1);
         
-        if ( nom.equals("CL"))
-        {
-        	ws.getMap().addCliente(data.getAlias(), data.getX(), data.getY());
-        }
-        else if ( nom.equals("TP"))
-        {
-        	ws.getMap().addTP(data.getAlias(), data.getX(), data.getY());
-        }
-        else if ( nom.equals("EP"))
-        {
-        	ws.getMap().addEP(data.getAlias(), data.getX(), data.getY());
-        }
-        else if ( nom.equals("CO"))
-        {
-        	ws.getMap().addCO(data.getAlias(), data.getX(), data.getY());
-        }
+        ws.getMap().addAgent(data.getAlias(), data.getX(), data.getY() );
         
-        
-//        ws.getMap().addBot(data.getAlias(), data.getX(), data.getY());
     }
     
 }

@@ -30,12 +30,12 @@ public class ClienteSensorGuard extends GuardBESA{
         
         if ( !cs.hasEaten() )
         {
-            System.out.println("busca comida");
+//            System.out.println("busca comida");
             buscarComida(cs, ebesa);
         }
         else if ( !cs.getSeated() )
         {
-            System.out.println("busca silla");
+//            System.out.println("busca silla");
         	goSit(cs, ebesa);
         }
         else {
@@ -66,7 +66,7 @@ public class ClienteSensorGuard extends GuardBESA{
             }
         }
 
-        System.out.println("guard cliente");
+//        System.out.println("guard cliente");
 
         if( nearestChair ==-1 )
         {
@@ -99,7 +99,7 @@ public class ClienteSensorGuard extends GuardBESA{
         DataBESA dataAction;
         if(nuevox == cs.getX() && nuevoy == cs.getY())
         {
-            System.out.println("sentandose");
+//            System.out.println("sentandose");
             cs.sit();
             dataAction = new ActionData(this.getAgent().getAlias(), "sit", nuevox, nuevoy);
         }
@@ -142,7 +142,7 @@ public class ClienteSensorGuard extends GuardBESA{
             }
         }
 
-        System.out.println("guard cliente");
+//        System.out.println("guard cliente");
 
         if( nearestFood==-1 )
         {
@@ -175,7 +175,7 @@ public class ClienteSensorGuard extends GuardBESA{
         DataBESA dataAction;
         if(nuevox == cs.getX() && nuevoy == cs.getY())
         {
-            System.out.println("comiendo");
+//            System.out.println("comiendo");
             cs.eat();
             dataAction = new ActionData(this.getAgent().getAlias(), "clean");
         }

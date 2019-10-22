@@ -6,13 +6,13 @@ import Cocinero.CocineroAgent;
 import Cocinero.Behavior.CocineroSensorGuard;
 import Cocinero.State.CocineroState;
 
-public class CocineroCreator {
+public class COCreator {
 	
 	private static double clave;
 	
 	public static void setClave( double clave )
 	{
-		CocineroCreator.clave = clave ;
+		COCreator.clave = clave ;
 		
 	}
 
@@ -24,7 +24,7 @@ public class CocineroCreator {
     }
 
     // crea un unico agente, pasandole el tamaño del mapa y su nombre
-    public static void cocinero( int sizex, int sizey, String name ) throws ExceptionBESA
+    private static void cocinero( int sizex, int sizey, String name ) throws ExceptionBESA
     {
         StructBESA c1Struct = new StructBESA();
         c1Struct.addBehavior("CocineroplayerPerception");

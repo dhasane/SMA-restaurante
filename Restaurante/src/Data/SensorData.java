@@ -27,12 +27,13 @@ public class SensorData extends DataBESA{
         return comida;
     }
     
+//    public void addComida( )
+//    {
+//    	WorldObject wo = new WorldObject(xpos, ypos, )
+//    }
+    
     public List<WorldObject> getSillas() {
         return sillas;
-    }
-
-    public void setComida(List<WorldObject> comida) {
-        this.comida = comida;
     }
 
 
