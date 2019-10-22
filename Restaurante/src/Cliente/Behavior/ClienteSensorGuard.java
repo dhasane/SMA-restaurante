@@ -34,27 +34,7 @@ public class ClienteSensorGuard extends GuardBESA{
         if ( cs.hambre() )
         {
         	System.out.println("busca comida");
-//        	hacerPedido( cs, ebesa );
-        	
-        	Food food = new Food(); // perdon esto, necesitaba burlarme de algo
-        	food.add("arrocito asi que chinga");
-        	food.add("papitas bien sabrosongas");
-        	food.add("filetico de carne asi bien ricolino");
-        	food.add("limonadita asi que ahhhh");
-
-        	DataBESA pedido = new Pedido( food );
-        			
-        	EventBESA event = new EventBESA( PedidoGuard.class.getName(), pedido );
-        	
-            AgHandlerBESA ah;
-            try {
-                ah = getAgent().getAdmLocal().getHandlerByAlias("SupervisorPedidos");
-                ah.sendEvent(event);
-            }
-            catch (ExceptionBESA e) {
-                ReportBESA.error(e);
-            }
-
+        	hacerPedido( cs, ebesa );
         }
         else if( cs.pedidoHecho() )
         {
@@ -68,6 +48,31 @@ public class ClienteSensorGuard extends GuardBESA{
         else return;
 
     }
+    
+    private void hacerPedido(ClienteState cs, EventBESA ebesa)
+    {
+    	// por si acaso, esta mierda aun no sirve 
+    	
+    	Food food = new Food(); // perdon esto, necesitaba burlarme de algo
+    	food.add("arrocito asi que chinga"); // sería para ponerle un random o algo asi aca
+    	food.add("papitas bien sabrosongas");
+    	food.add("filetico de carne asi bien ricolino");
+    	food.add("limonadita asi que ahhhh");
+
+    	DataBESA pedido = new Pedido( food );
+    			
+    	EventBESA event = new EventBESA( PedidoGuard.class.getName(), pedido );
+    	
+        AgHandlerBESA ah;
+        try {
+            ah = getAgent().getAdmLocal().getHandlerByAlias("WORLD");
+            ah.sendEvent(event);
+        }
+        catch (ExceptionBESA e) {
+            ReportBESA.error(e);
+        }
+    }
+    
     
     // busca una silla, va y se sienta
 //    private void hacerPedido(ClienteState cs, EventBESA ebesa)
