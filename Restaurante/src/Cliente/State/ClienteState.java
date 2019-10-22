@@ -1,7 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package Cliente.State;
 
 import BESA.Kernell.Agent.StateBESA;
@@ -10,28 +8,39 @@ public class ClienteState extends  StateBESA{
 
     private static final long serialVersionUID = 1L;
 
-    private boolean food;
+    private boolean tieneHambre;
     private boolean seated;
+    private boolean yaPidio;
 
     private int x;
     private int y;
 
     public ClienteState(int x, int y) {
-        this.food = false;
+        this.tieneHambre = true;
         this.seated = false;
+        this.yaPidio = false;
         this.x = x;
         this.y = y;
     }
 
-    public boolean hasEaten()
+    public boolean hambre()
     {
-        return this.food;
+        return this.tieneHambre;
     }
 
     public void eat()
     {
-        this.food = true;
+        this.tieneHambre = false;
     }
+    
+    public void pedir()
+    {
+    	this.yaPidio = true;
+    }
+    
+    public boolean pedidoHecho() {
+		return this.yaPidio;
+	}
 
     public int getX() {
         return x;
@@ -60,4 +69,6 @@ public class ClienteState extends  StateBESA{
     public void getUp() {
 		this.seated = false;
 	}
+
+	
 }

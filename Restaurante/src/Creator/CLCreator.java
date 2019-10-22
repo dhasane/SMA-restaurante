@@ -27,8 +27,8 @@ public class CLCreator {
     private static void cliente( int sizex, int sizey, String name ) throws ExceptionBESA
     {
         StructBESA c1Struct = new StructBESA();
-        c1Struct.addBehavior("playerPerception");
-        c1Struct.bindGuard("playerPerception", ClienteSensorGuard.class);
+        c1Struct.addBehavior("ClientPlayerPerception");
+        c1Struct.bindGuard  ("ClientPlayerPerception", ClienteSensorGuard.class);
         ( new ClienteAgent( name, new ClienteState(sizex, sizey), c1Struct, clave ) ).start();
     }
 }

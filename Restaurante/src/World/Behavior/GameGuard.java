@@ -17,7 +17,7 @@ public class GameGuard extends PeriodicGuardBESA{
         WorldState ws = (WorldState)this.getAgent().getState();
         for (int i = 0; i < ws.getBotsAlias().size(); i++)
         {
-            DataBESA data = new SensorData( ws.getMap().getSillas() , ws.getMap().getSillas() );
+            DataBESA data = new SensorData( ws.getMap().getFood() , ws.getMap().getSillas() );
             EventBESA event = new EventBESA(ClienteSensorGuard.class.getName(), data);
             AgHandlerBESA ah;
             try {

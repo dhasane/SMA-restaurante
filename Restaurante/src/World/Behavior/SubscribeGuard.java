@@ -7,6 +7,7 @@ import World.State.WorldState;
 
 public class SubscribeGuard extends GuardBESA{
 
+	// esto agrega los agentes al mapa, de resto aun no sé 
     @Override
     public void funcExecGuard(EventBESA ebesa) {
         SubscribeData data = (SubscribeData)ebesa.getData();

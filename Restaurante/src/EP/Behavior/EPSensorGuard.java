@@ -25,6 +25,8 @@ public class EPSensorGuard extends GuardBESA{
 
     @Override
     public void funcExecGuard(EventBESA ebesa) {
+    	
+    	System.out.println(" holaaaaaaa puta vida ");
 
         EPState state = (EPState) this.getAgent().getState();
         
@@ -34,6 +36,7 @@ public class EPSensorGuard extends GuardBESA{
     	{
     		ponerComida( ebesa , state );
     	}
+    	else return;
     }
     
     private void ponerComida(EventBESA ebesa, EPState state) 

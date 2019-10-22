@@ -28,7 +28,7 @@ public class COCreator {
     {
         StructBESA c1Struct = new StructBESA();
         c1Struct.addBehavior("CocineroplayerPerception");
-        c1Struct.bindGuard("CocineroplayerPerception", CocineroSensorGuard.class);
+        c1Struct.bindGuard  ("CocineroplayerPerception", CocineroSensorGuard.class);
         ( new CocineroAgent( name, new CocineroState(sizex, sizey), c1Struct, clave ) ).start() ;
 
     }

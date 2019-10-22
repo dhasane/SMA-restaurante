@@ -29,8 +29,8 @@ public class TPCreator {
     private static void agente( int sizex, int sizey, String name, int x, int y) throws ExceptionBESA
     {
         StructBESA c1Struct = new StructBESA();
-        c1Struct.addBehavior("playerPerception");
-        c1Struct.bindGuard("playerPerception", TPSensorGuard.class);
+        c1Struct.addBehavior("TPPlayerPerception");
+        c1Struct.bindGuard  ("TPPlayerPerception", TPSensorGuard.class);
         ( new TPAgent( name, new TPState(sizex, sizey), c1Struct, clave, x, y ) ).start();
     }
 }

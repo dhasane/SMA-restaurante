@@ -69,7 +69,7 @@ public class Restaurante {
         EPCreator.crearEP(tamx, tamy, entregas);
 
 
-        CLCreator.crearCL(tamx, tamy, 2);
+        CLCreator.crearCL(tamx, tamy, 1 );
 //
 //        COCreator.crearCocineros(tamx, tamy, 3);
 

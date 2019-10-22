@@ -19,8 +19,11 @@ public class TPSensorGuard extends GuardBESA{
     @Override
     public void funcExecGuard(EventBESA ebesa) {
 
-
+    	System.out.println(" hola perra");
 
     }
+    
+    // recibir info
+    // reenviar info
 
 }

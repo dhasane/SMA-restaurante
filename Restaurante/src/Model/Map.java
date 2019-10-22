@@ -284,7 +284,7 @@ public class Map extends JPanel{
         this.bots = bots;
     }
 
-    public List<WorldObject> getDust() {
+    public List<WorldObject> getFood() {
         return comida;
     }
 

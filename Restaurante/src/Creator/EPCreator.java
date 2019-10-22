@@ -31,8 +31,8 @@ public class EPCreator {
     private static void agente( int sizex, int sizey, String name, int x, int y) throws ExceptionBESA
     {
         StructBESA c1Struct = new StructBESA();
-        c1Struct.addBehavior("playerPerception");
-        c1Struct.bindGuard("playerPerception", EPSensorGuard.class);
+        c1Struct.addBehavior("EPPerception");
+        c1Struct.bindGuard  ("EPPerception", EPSensorGuard.class);
         ( new EPAgent( name, new EPState(sizex, sizey), c1Struct, clave, x, y ) ).start();
     }
 }

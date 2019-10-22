@@ -43,4 +43,9 @@ public class WorldState extends StateBESA{
     public void sit(String alias, int x, int y) {
         map.sit(alias,x,y);
     }
+
+	public void ponerComida(String alias, int x, int y) {
+		map.ponerComida(alias, x, y);
+		
+	}
 }
