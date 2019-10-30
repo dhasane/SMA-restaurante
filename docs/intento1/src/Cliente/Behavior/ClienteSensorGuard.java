@@ -30,7 +30,7 @@ public class ClienteSensorGuard extends GuardBESA{
     public void funcExecGuard(EventBESA ebesa) {
 
         ClienteState cs = (ClienteState) this.getAgent().getState();
-        
+
         if ( cs.hambre() )
         {
         	System.out.println("busca comida");
@@ -48,11 +48,11 @@ public class ClienteSensorGuard extends GuardBESA{
         else return;
 
     }
-    
+
     private void hacerPedido(ClienteState cs, EventBESA ebesa)
     {
-    	// por si acaso, esta mierda aun no sirve 
-    	
+    	// por si acaso, esta mierda aun no sirve
+
     	Food food = new Food(); // perdon esto, necesitaba burlarme de algo
     	food.add("arrocito asi que chinga"); // sería para ponerle un random o algo asi aca
     	food.add("papitas bien sabrosongas");
@@ -60,9 +60,9 @@ public class ClienteSensorGuard extends GuardBESA{
     	food.add("limonadita asi que ahhhh");
 
     	DataBESA pedido = new Pedido( food );
-    			
+
     	EventBESA event = new EventBESA( PedidoGuard.class.getName(), pedido );
-    	
+
         AgHandlerBESA ah;
         try {
             ah = getAgent().getAdmLocal().getHandlerByAlias("WORLD");
@@ -72,19 +72,19 @@ public class ClienteSensorGuard extends GuardBESA{
             ReportBESA.error(e);
         }
     }
-    
-    
+
+
     // busca una silla, va y se sienta
 //    private void hacerPedido(ClienteState cs, EventBESA ebesa)
 //    {
-//    	
+//
 //        SensorData data = (SensorData) ebesa.getData();
 //
 //        int nearestChair = -1;
 //        double nearestDistance = Double.MAX_VALUE;
 //
 //        // se consigue el objeto mas cercano
-//        for (int i = 0; i < data.getSillas().size(); i++) 
+//        for (int i = 0; i < data.getSillas().size(); i++)
 //        {
 //            double distance =  Math.sqrt(Math.pow(cs.getX() - data.getTPs().get(i).getXpos(), 2)
 //                                + Math.pow(cs.getY() - data.getTPs().get(i).getYpos(), 2));
@@ -162,7 +162,7 @@ public class ClienteSensorGuard extends GuardBESA{
         double nearestDistance = Double.MAX_VALUE;
 
         // se consigue el objeto mas cercano
-        for (int i = 0; i < data.getSillas().size(); i++) 
+        for (int i = 0; i < data.getSillas().size(); i++)
         {
             double distance =  Math.sqrt(Math.pow(cs.getX() - data.getSillas().get(i).getXpos(), 2)
                                 + Math.pow(cs.getY() - data.getSillas().get(i).getYpos(), 2));
@@ -236,7 +236,7 @@ public class ClienteSensorGuard extends GuardBESA{
 
         int nearestFood = -1;
         double nearestDistance = Double.MAX_VALUE;
-        
+
         System.out.println( " hay cosa esta " + data.getComida().size() );
 
         // se consigue el objeto mas cercano
