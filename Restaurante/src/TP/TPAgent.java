@@ -5,7 +5,7 @@ import BESA.Kernell.Agent.KernellAgentExceptionBESA;
 import BESA.Kernell.Agent.StateBESA;
 import BESA.Kernell.Agent.StructBESA;
 import BESA.Log.ReportBESA;
-import TP.State.TPState;
+import Utils.Nombres;
 
 public class TPAgent extends AgentBESA {
 
@@ -16,6 +16,7 @@ public class TPAgent extends AgentBESA {
     @Override
     public void setupAgent() {
         ReportBESA.info("SETUP AGENT -> " + getAlias());
+        getAdmLocal().bindSPServiceInDirectory(this.getAid() , Nombres.tomaPedido );
 //        TPState cs = (TPState)this.getState();
         
     }

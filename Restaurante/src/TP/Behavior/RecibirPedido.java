@@ -7,7 +7,7 @@ package TP.Behavior;
 import BESA.Kernell.Agent.Event.EventBESA;
 import BESA.Kernell.Agent.GuardBESA;
 
-public class PedidoGuard extends GuardBESA{
+public class RecibirPedido extends GuardBESA{
 
 	// esto realiza acciones de los agentes 
 	

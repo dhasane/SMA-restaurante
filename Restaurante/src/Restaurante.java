@@ -13,14 +13,12 @@ public class Restaurante {
 
     private static double clave = 0.91;
 
-
-    // EP -> entrega pedido
-    // TP -> toma pedido
-    // CO -> cocinero
-    // CL -> cliente
-    // CA -> caja
-    // AY -> ayudante // TODO
-
+    // CL -> cliente		TODO
+    // CO -> cocinero		TODO
+    // TP -> toma pedido	TODO
+    // EP -> entrega pedido	TODO
+    // CA -> caja			TODO
+    // AY -> ayudante		TODO
 
     public static void main(String[] args) throws ExceptionBESA {
 
@@ -29,15 +27,19 @@ public class Restaurante {
         EPCreator.setClave(clave);
         COCreator.setClave(clave);
         
-        CLDoor cd = new CLDoor( clave );
+        CLDoor cd = new CLDoor( clave, 5 );
         
         TPCreator.crearTP( 4 );
 
         EPCreator.crearEP( 5 );
 
-        
-
         COCreator.crearCocineros( 3 );
+        
+        
+        String agid = admLocal.lookupSPServiceInDirectory( "Cocinero" );
+        System.out.println(" este es el string : " +agid);
+        
+        admLocal.killAgent(agid, clave);
 
     }
 

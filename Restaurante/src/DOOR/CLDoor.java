@@ -6,17 +6,26 @@ import BESA.ExceptionBESA;
 import CL.ClienteAgent;
 import Creator.CLCreator;
 
-public class CLDoor {
+public class CLDoor extends Thread {
 	
 	private int cantidad;
 	private int total;
+	private int maximo;
 	
-	public CLDoor( double llave )
+	public CLDoor( double llave, int maximo)
 	{
 		CLCreator.setClave(llave);
 		this.total = 0;
+		this.start();
+		this.maximo = maximo;
+	}
+	
+	@Override
+    public void run() {
+        
 		while ( true )
 		{
+			if ( cantidad <= maximo )
 			this.createCL();
 			try {
 				TimeUnit.MILLISECONDS.sleep( funcionDeTiempo() );
@@ -24,7 +33,7 @@ public class CLDoor {
 				e.printStackTrace();
 			}
 		}
-	}
+    }
 	
 	int funcionDeTiempo()
 	{

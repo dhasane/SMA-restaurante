@@ -3,7 +3,7 @@ package Creator;
 import BESA.ExceptionBESA;
 import BESA.Kernell.Agent.StructBESA;
 import CL.ClienteAgent;
-import CL.Behavior.ClienteSensorGuard;
+import CL.Behavior.ProductsReques;
 import CL.State.ClienteState;
 
 public class CLCreator {
@@ -26,7 +26,7 @@ public class CLCreator {
     {
         StructBESA c1Struct = new StructBESA();
         c1Struct.addBehavior("ClientPlayerPerception");
-        c1Struct.bindGuard  ("ClientPlayerPerception", ClienteSensorGuard.class);
+        c1Struct.bindGuard  ("ClientPlayerPerception", ProductsReques.class);
         ( new ClienteAgent( name, new ClienteState( ), c1Struct, clave ) ).start();
     }
 }
