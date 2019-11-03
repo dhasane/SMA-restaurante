@@ -3,8 +3,10 @@ package Creator;
 import BESA.ExceptionBESA;
 import BESA.Kernell.Agent.StructBESA;
 import TP.TPAgent;
+import TP.Behavior.RecibirPedido;
 import TP.Behavior.TPSensorGuard;
 import TP.State.TPState;
+
 
 public class TPCreator {
 	
@@ -22,12 +24,15 @@ public class TPCreator {
             agente( "TP"+Integer.toString( a ) );
     }
 
-    // crea un unico agente, pasandole el tamaño del mapa y su nombre
     private static void agente( String name ) throws ExceptionBESA
     {
         StructBESA c1Struct = new StructBESA();
-        c1Struct.addBehavior("TPPlayerPerception");
-        c1Struct.bindGuard  ("TPPlayerPerception", TPSensorGuard.class);
+        c1Struct.addBehavior("TPPerception");
+        c1Struct.bindGuard  ("TPPerception", TPSensorGuard.class);
+
+        c1Struct.addBehavior("TPRecibirPedido");
+        c1Struct.bindGuard  ("TPRecibirPedido", RecibirPedido.class);
+        
         ( new TPAgent( name, new TPState( ), c1Struct, clave ) ).start();
     }
 }

@@ -5,7 +5,11 @@ import BESA.Kernell.Agent.KernellAgentExceptionBESA;
 import BESA.Kernell.Agent.StateBESA;
 import BESA.Kernell.Agent.StructBESA;
 import BESA.Log.ReportBESA;
+import CL.Behavior.ProductRequest;
 import CL.State.ClienteState;
+import Data.EmptyData;
+import Utils.Utils;
+
 import java.util.Random;
 
 public class ClienteAgent extends AgentBESA {
@@ -17,8 +21,7 @@ public class ClienteAgent extends AgentBESA {
     @Override
     public void setupAgent() {
         ReportBESA.info("SETUP AGENT -> " + getAlias());
-        ClienteState cs = (ClienteState)this.getState();
-
+//        ClienteState cs = (ClienteState)this.getState();
     }
 
     @Override

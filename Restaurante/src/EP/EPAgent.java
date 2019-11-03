@@ -5,7 +5,7 @@ import BESA.Kernell.Agent.KernellAgentExceptionBESA;
 import BESA.Kernell.Agent.StateBESA;
 import BESA.Kernell.Agent.StructBESA;
 import BESA.Log.ReportBESA;
-import Utils.Nombres;
+import Utils.Utils;
 
 public class EPAgent extends AgentBESA {
 
@@ -18,7 +18,7 @@ public class EPAgent extends AgentBESA {
         ReportBESA.info("SETUP AGENT -> " + getAlias());
 //        EPState cs = (EPState)this.getState();
 
-        getAdmLocal().bindSPServiceInDirectory(this.getAid() , Nombres.EntregaPedido );
+        getAdmLocal().bindSPServiceInDirectory(this.getAid() , Utils.EntregaPedido );
 
     }
 

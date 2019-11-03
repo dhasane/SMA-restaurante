@@ -1,6 +1,6 @@
 
 import BESA.ExceptionBESA;
-import BESA.Kernell.System.AdmBESA;
+//import BESA.Kernell.System.AdmBESA;
 import Creator.COCreator;
 import Creator.EPCreator;
 import Creator.TPCreator;
@@ -22,12 +22,13 @@ public class Restaurante {
 
     public static void main(String[] args) throws ExceptionBESA {
 
-        AdmBESA admLocal = AdmBESA.getInstance();
+//        AdmBESA admLocal = AdmBESA.getInstance();
         TPCreator.setClave(clave);
         EPCreator.setClave(clave);
         COCreator.setClave(clave);
         
-        CLDoor cd = new CLDoor( clave, 5 );
+        int cantidadMaximaDeClientes = 1;
+        
         
         TPCreator.crearTP( 4 );
 
@@ -35,12 +36,10 @@ public class Restaurante {
 
         COCreator.crearCocineros( 3 );
         
+        // siendo que los clientes son los que inician la cadena, deben ser llamados de ultimo,
+        // cuando ya todos los demas agentes esten iniciados
+        new CLDoor( clave, cantidadMaximaDeClientes );
         
-        String agid = admLocal.lookupSPServiceInDirectory( "Cocinero" );
-        System.out.println(" este es el string : " +agid);
-        
-        admLocal.killAgent(agid, clave);
-
     }
 
 }

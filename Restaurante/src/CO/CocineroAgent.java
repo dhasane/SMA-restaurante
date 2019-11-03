@@ -6,7 +6,7 @@ import BESA.Kernell.Agent.StateBESA;
 import BESA.Kernell.Agent.StructBESA;
 import BESA.Log.ReportBESA;
 import CO.State.CocineroState;
-import Utils.Nombres;
+import Utils.Utils;
 
 public class CocineroAgent extends AgentBESA {
 
@@ -20,7 +20,7 @@ public class CocineroAgent extends AgentBESA {
         ReportBESA.info("SETUP AGENT -> " + getAlias());
         CocineroState cs = (CocineroState) this.getState();
 
-        getAdmLocal().bindSPServiceInDirectory(this.getAid() , Nombres.Cocinero );
+        getAdmLocal().bindSPServiceInDirectory(this.getAid() , Utils.Cocinero );
 
     }
 

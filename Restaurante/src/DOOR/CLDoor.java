@@ -25,7 +25,7 @@ public class CLDoor extends Thread {
         
 		while ( true )
 		{
-			if ( cantidad <= maximo )
+			if ( cantidad < maximo )
 			this.createCL();
 			try {
 				TimeUnit.MILLISECONDS.sleep( funcionDeTiempo() );
