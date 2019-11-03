@@ -5,7 +5,7 @@ import BESA.Kernell.Agent.KernellAgentExceptionBESA;
 import BESA.Kernell.Agent.StateBESA;
 import BESA.Kernell.Agent.StructBESA;
 import BESA.Log.ReportBESA;
-import CL.Behavior.ProductRequest;
+import CL.Behavior.VerFila;
 import CL.State.ClienteState;
 import Data.EmptyData;
 import Utils.Utils;

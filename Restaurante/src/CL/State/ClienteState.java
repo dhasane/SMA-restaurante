@@ -3,51 +3,42 @@ package CL.State;
 
 import BESA.Kernell.Agent.StateBESA;
 
-public class ClienteState extends  StateBESA{
+public class ClienteState extends StateBESA {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private boolean tieneHambre;
-    private boolean seated;
-    private boolean yaPidio;
+	private int preguntas; 			// cantidad de preguntas que el agente ha realizado
+	private String filaAHacer;		// la mejor fila
+	private int longitudFilaAHacer;	// longitud de la fila
 
-
-    public ClienteState() {
-        this.tieneHambre = true;
-        this.seated = false;
-        this.yaPidio = false;
-    }
-
-    public boolean hambre()
-    {
-        return this.tieneHambre;
-    }
-
-    public void eat()
-    {
-        this.tieneHambre = false;
-    }
-
-    public void pedir()
-    {
-    	this.yaPidio = true;
-    }
-
-    public boolean pedidoHecho() {
-		return this.yaPidio;
+	public ClienteState() {
+		this.preguntas = 0;
+		this.filaAHacer = "";
+		this.longitudFilaAHacer = 0;
 	}
 
-    public boolean getSeated() {
-    	return this.seated;
-    }
-
-    public void sit() {
-		this.seated = true;
+	public void setPreguntas(int cantidad) {
+		this.preguntas = cantidad;
 	}
 
-    public void getUp() {
-		this.seated = false;
+	public int getPreguntas() {
+		return this.preguntas;
 	}
 
+	public void setFila(String dueño, int longitud) {
+		if (this.filaAHacer.equals("") || longitud < this.longitudFilaAHacer) {
+			this.filaAHacer = dueño;
+			this.longitudFilaAHacer = longitud;
+		}
+	}
+	
+	public String getFila( )
+	{
+		return this.filaAHacer;
+	}
+
+	public void reducirPregunta() {
+		this.preguntas--;
+	}
 
 }

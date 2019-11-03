@@ -27,7 +27,7 @@ public class Restaurante {
         EPCreator.setClave(clave);
         COCreator.setClave(clave);
         
-        int cantidadMaximaDeClientes = 1;
+        int cantidadMaximaDeClientes = 7;
         
         
         TPCreator.crearTP( 4 );
