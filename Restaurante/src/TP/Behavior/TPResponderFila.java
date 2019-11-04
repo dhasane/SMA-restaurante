@@ -1,7 +1,7 @@
 package TP.Behavior;
 
 import BESA.Kernell.Agent.Event.EventBESA;
-import CL.Behavior.HacerFila;
+import CL.Behavior.CLHacerFila;
 import Data.FilaData;
 import Data.IDData;
 import TP.State.TPState;
@@ -9,7 +9,7 @@ import BESA.Kernell.Agent.GuardBESA;
 
 import Utils.Utils;
 
-public class ResponderFila extends GuardBESA{
+public class TPResponderFila extends GuardBESA{
 	
     @Override
     public void funcExecGuard(EventBESA ebesa) {
@@ -19,7 +19,7 @@ public class ResponderFila extends GuardBESA{
     	
     	IDData idd = (IDData) ebesa.getData();
     	
-    	Utils.send( getAgent().getAdmLocal(), idd.getId() , HacerFila.class.getName(), new FilaData( state.getAtendiendo(), getAgent().getAid()  ));
+    	Utils.send( getAgent().getAdmLocal(), idd.getId() , CLHacerFila.class.getName(), new FilaData( state.getAtendiendo(), getAgent().getAid()  ));
     }
 
 }

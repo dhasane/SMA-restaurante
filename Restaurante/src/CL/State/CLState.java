@@ -3,7 +3,7 @@ package CL.State;
 
 import BESA.Kernell.Agent.StateBESA;
 
-public class ClienteState extends StateBESA {
+public class CLState extends StateBESA {
 
 	private static final long serialVersionUID = 1L;
 
@@ -11,7 +11,7 @@ public class ClienteState extends StateBESA {
 	private String filaAHacer;		// la mejor fila
 	private int longitudFilaAHacer;	// longitud de la fila
 
-	public ClienteState() {
+	public CLState() {
 		this.preguntas = 0;
 		this.filaAHacer = "";
 		this.longitudFilaAHacer = 0;

@@ -5,7 +5,7 @@ import Data.IDData;
 import TP.State.TPState;
 import BESA.Kernell.Agent.GuardBESA;
 
-public class IncluirEnFila extends GuardBESA{
+public class TPIncluirEnFila extends GuardBESA{
 	
     @Override
     public void funcExecGuard(EventBESA ebesa) {

@@ -1,6 +1,6 @@
 
 import BESA.ExceptionBESA;
-//import BESA.Kernell.System.AdmBESA;
+import Creator.CACreator;
 import Creator.COCreator;
 import Creator.EPCreator;
 import Creator.TPCreator;
@@ -13,7 +13,7 @@ public class Restaurante {
 
     // CL -> cliente		TODO
     // CO -> cocinero		TODO
-    // TP -> toma pedido	TODO
+    // TP -> toma pedido	
     // EP -> entrega pedido	TODO
     // CA -> caja			TODO
     // AY -> ayudante		TODO
@@ -32,8 +32,11 @@ public class Restaurante {
 
         COCreator.crearCocineros( 3 );
         
-        // siendo que los clientes son los que inician la cadena, deben ser llamados de ultimo,
-        // cuando ya todos los demas agentes esten iniciados
+        CACreator.crearCA( 4 );
+        
+        // siendo que los clientes son los que inician la cadena,
+        // deben ser llamados de ultimo, cuando ya todos los demas
+        // agentes hayan sido inicializados
         new CLDoor( clave, cantidadMaximaDeClientes );
         
     }

@@ -6,11 +6,11 @@ package CO.State;
 
 import BESA.Kernell.Agent.StateBESA;
 
-public class CocineroState extends  StateBESA{
+public class COState extends  StateBESA{
 
 	private static final long serialVersionUID = 1L;
 
-    public CocineroState() {
+    public COState() {
     }
 
 }

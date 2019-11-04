@@ -8,7 +8,6 @@ import BESA.Kernell.Agent.StructBESA;
 import BESA.Kernell.Agent.Event.DataBESA;
 import BESA.Kernell.Agent.Event.EventBESA;
 import BESA.Kernell.System.AdmBESA;
-import CL.Behavior.VerFila;
 
 public class Utils {
 
@@ -24,6 +23,8 @@ public class Utils {
 	public static String EntregaPedido = "EntregaPedido";
 	public static String tomaPedido = "tomaPedido";
 	public static String Puerta = "Puerta";
+	public static String Caja = "Caja";
+	
 
 	// funciones genericas
 

@@ -3,7 +3,7 @@ package DOOR;
 import java.util.concurrent.TimeUnit;
 
 import BESA.ExceptionBESA;
-import CL.ClienteAgent;
+import CL.CLAgent;
 import Creator.CLCreator;
 
 public class CLDoor extends Thread {
@@ -54,7 +54,7 @@ public class CLDoor extends Thread {
 	}
 	
 	// destruye un agente, aun falta ver como realizar el llamado desde el agente 
-	private void destroyCL( ClienteAgent ca )
+	private void destroyCL( CLAgent ca )
 	{
 		ca.shutdownAgent();
 		this.cantidad --;
