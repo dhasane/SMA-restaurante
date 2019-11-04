@@ -5,6 +5,7 @@ import BESA.Kernell.Agent.StructBESA;
 import EP.EPAgent;
 import EP.Behavior.EPSensorGuard;
 import EP.State.EPState;
+import Utils.Utils;
 
 public class EPCreator {
 	
@@ -26,8 +27,8 @@ public class EPCreator {
     private static void agente( String name ) throws ExceptionBESA
     {
         StructBESA c1Struct = new StructBESA();
-        c1Struct.addBehavior("EPPerception");
-        c1Struct.bindGuard  ("EPPerception", EPSensorGuard.class);
+
+		Utils.agregarAEstructura( c1Struct , EPSensorGuard.class);
         ( new EPAgent( name, new EPState( ), c1Struct, clave ) ).start();
     }
 }

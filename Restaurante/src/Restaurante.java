@@ -8,8 +8,6 @@ import DOOR.CLDoor;
 
 public class Restaurante {
 
-    public static int GAME_PERIODIC_TIME = 1000;
-    public static int GAME_PERIODIC_DELAY_TIME = 100;
 
     private static double clave = 0.91;
 
@@ -22,13 +20,11 @@ public class Restaurante {
 
     public static void main(String[] args) throws ExceptionBESA {
 
-//        AdmBESA admLocal = AdmBESA.getInstance();
         TPCreator.setClave(clave);
         EPCreator.setClave(clave);
         COCreator.setClave(clave);
         
         int cantidadMaximaDeClientes = 7;
-        
         
         TPCreator.crearTP( 4 );
 

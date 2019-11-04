@@ -5,6 +5,7 @@ import BESA.Kernell.Agent.StructBESA;
 import CO.CocineroAgent;
 import CO.Behavior.CocineroSensorGuard;
 import CO.State.CocineroState;
+import Utils.Utils;
 
 public class COCreator {
 	
@@ -27,8 +28,9 @@ public class COCreator {
     private static void cocinero( String name ) throws ExceptionBESA
     {
         StructBESA c1Struct = new StructBESA();
-        c1Struct.addBehavior("CocineroplayerPerception");
-        c1Struct.bindGuard  ("CocineroplayerPerception", CocineroSensorGuard.class);
+
+		Utils.agregarAEstructura( c1Struct , CocineroSensorGuard.class);
+
         ( new CocineroAgent( name, new CocineroState( ), c1Struct, clave ) ).start() ;
 
     }

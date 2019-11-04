@@ -15,7 +15,7 @@ public class ResponderFila extends GuardBESA{
     public void funcExecGuard(EventBESA ebesa) {
     	
     	TPState state = (TPState) this.getAgent().getState();
-    	System.out.println( getAgent().getAlias() + " responde longitud de filas ( "+ state.getAtendiendo() + " )");
+//    	System.out.println( getAgent().getAlias() + " responde longitud de filas ( "+ state.getAtendiendo() + " )");
     	
     	IDData idd = (IDData) ebesa.getData();
     	

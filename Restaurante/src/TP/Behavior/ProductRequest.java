@@ -1,21 +1,22 @@
 package TP.Behavior;
 
 import BESA.Kernell.Agent.Event.EventBESA;
-import Data.IDData;
+import Data.PedidoData;
 import TP.State.TPState;
 import BESA.Kernell.Agent.GuardBESA;
 
-public class IncluirEnFila extends GuardBESA{
+public class ProductRequest extends GuardBESA{
 	
     @Override
     public void funcExecGuard(EventBESA ebesa) {
     	
     	TPState state = (TPState) this.getAgent().getState();
     	
-    	state.addFila( ((IDData)ebesa.getData()).getId() );
-    	
-    	System.out.println( getAgent().getAlias() + " ahora tiene : " +state.getAtendiendo() );
-//    	state.print( getAgent().getAlias() );
+    	((PedidoData)ebesa.getData()).getPedido() ;
+
+    	// enviar el pedido a la cocina :v 
+    	// enviar monto a caja para cobrar
+    	// enviar monto a cliente para que pague 
     }
 
 }
