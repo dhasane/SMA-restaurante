@@ -12,7 +12,7 @@ public class CAAtenderFilaPago extends PeriodicGuardBESA {
 	@Override
 	public void funcPeriodicExecGuard(EventBESA arg0) {
 		if (((CAState) this.getAgent().getState()).getAtendiendo() > 0) {
-			System.out.println(getAgent().getAlias()
+			Utils.imp(getAgent().getAlias()
 					+ " atiende la fila pago -----------------------------------------------------------------------------");
 
 			String cl = ((CAState) this.getAgent().getState()).getSiguiente();

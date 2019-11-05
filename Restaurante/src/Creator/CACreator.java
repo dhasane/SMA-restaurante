@@ -7,10 +7,10 @@ import BESA.Util.PeriodicDataBESA;
 import CA.CAAgent;
 import CA.Behavior.CAAtenderFilaPago;
 import CA.Behavior.CAIncluirEnFilaPago;
+import CA.Behavior.CARecibirPago;
 import CA.Behavior.CAResponderFilaPago;
 import CA.State.CAState;
 import Utils.Utils;
-
 
 public class CACreator {
 
@@ -27,17 +27,19 @@ public class CACreator {
 	}
 
 	private static void agente(String name) throws ExceptionBESA {
-		StructBESA c1Struct = new StructBESA();
+		StructBESA sb = new StructBESA();
 
-		Utils.agregarAEstructura(c1Struct, CAResponderFilaPago.class);
-		Utils.agregarAEstructura(c1Struct, CAIncluirEnFilaPago.class);
-		Utils.agregarAEstructura(c1Struct, CAAtenderFilaPago.class);
+		Utils.agregarAEstructura(sb, CAResponderFilaPago.class);
+		Utils.agregarAEstructura(sb, CAIncluirEnFilaPago.class);
+		Utils.agregarAEstructura(sb, CARecibirPago.class);
+		Utils.agregarAEstructura(sb, CAAtenderFilaPago.class);
 
-		CAAgent tpa = new CAAgent(name, new CAState(), c1Struct, clave);
+		CAAgent tpa = new CAAgent(name, new CAState(), sb, clave);
 		tpa.start();
-		PeriodicDataBESA data = new PeriodicDataBESA(Utils.PERIODIC_TIME, Utils.PERIODIC_DELAY_TIME, PeriodicGuardBESA.START_PERIODIC_CALL);
-        
-		Utils.send( tpa.getAdmLocal(), tpa.getAid(), CAAtenderFilaPago.class.getName(), data );
+		PeriodicDataBESA data = new PeriodicDataBESA(Utils.PERIODIC_TIME, Utils.PERIODIC_DELAY_TIME,
+				PeriodicGuardBESA.START_PERIODIC_CALL);
+
+		Utils.send(tpa.getAdmLocal(), tpa.getAid(), CAAtenderFilaPago.class.getName(), data);
 
 	}
 }

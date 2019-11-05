@@ -26,11 +26,4 @@ public class TPState extends StateBESA {
 		return this.fila.remove();
 	}
 
-	public void print(String id) {
-		System.out.print("contenido " + id + " : ");
-		for (String var : fila) {
-			System.out.print(var + " | ");
-		}
-		System.out.println();
-	}
 }

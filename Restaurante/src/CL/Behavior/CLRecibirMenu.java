@@ -24,9 +24,9 @@ public class CLRecibirMenu extends GuardBESA {
 		MenuData fd = (MenuData) ebesa.getData();
 //		ClienteState cs = (ClienteState) getAgent().getState();
 
-		System.out.println(getAgent().getAlias() + " mira el menu y pide ");
+//		Util.imp(getAgent().getAlias() + " mira el menu y pide ");
 
-		Utils.imprimirLista(fd.getMenu());
+//		Utils.imp( "menu : " + Utils.ListaAString( fd.getMenu() ) );
 
 		Random r = new Random();
 		List<String> pedido = new ArrayList<String>();
@@ -35,8 +35,7 @@ public class CLRecibirMenu extends GuardBESA {
 			pedido.add(fd.getMenu().get(r.nextInt(fd.getMenu().size())));
 		}
 		
-		System.out.print( "pedido de " + getAgent().getAlias() + " : " );
-		Utils.imprimirLista( pedido );
+		Utils.imp( "pedido de " + getAgent().getAlias() + " : " + Utils.ListaAString( pedido ) );
 
 		Utils.send(getAgent().getAdmLocal(), fd.responder(), TPProductRequest.class.getName() , new PedidoData(pedido, getAgent().getAid()));
 

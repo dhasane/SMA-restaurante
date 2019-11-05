@@ -12,7 +12,7 @@ public class TPAtenderFila extends PeriodicGuardBESA {
 	@Override
 	public void funcPeriodicExecGuard(EventBESA arg0) {
 		if (((TPState) this.getAgent().getState()).getAtendiendo() > 0) {
-			System.out.println(getAgent().getAlias()
+			Utils.imp(getAgent().getAlias()
 					+ " atiende la fila -----------------------------------------------------------------------------");
 
 			Utils.send(getAgent().getAdmLocal(), ((TPState) this.getAgent().getState()).getSiguiente(),

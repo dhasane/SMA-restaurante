@@ -1,10 +1,10 @@
 package CL.Behavior;
 
 import BESA.Kernell.Agent.Event.EventBESA;
+import CA.Behavior.CARecibirPago;
 import BESA.Kernell.Agent.GuardBESA;
 import BESA.Kernell.Agent.StateBESA;
 import Data.PagoData;
-import TP.Behavior.TPProductRequest;
 import Utils.Utils;
 
 public class CLRealizarPago extends GuardBESA {
@@ -18,11 +18,14 @@ public class CLRealizarPago extends GuardBESA {
 	public void funcExecGuard(EventBESA ebesa) {
 
 		PagoData fd = (PagoData) ebesa.getData();
-//		ClienteState cs = (ClienteState) getAgent().getState();
 
-		System.out.println(getAgent().getAlias() + " paga por su pedido " + fd.getMonto());
+		Utils.imp(getAgent().getAlias() + " paga por su pedido " + fd.getMonto());
 
-		Utils.send(getAgent().getAdmLocal(), fd.responder(), TPProductRequest.class.getName(), fd);
+		String responderA = fd.responder();
+
+		fd.setResopnder(getAgent().getAid());
+
+		Utils.send(getAgent().getAdmLocal(), responderA, CARecibirPago.class.getName(), fd);
 
 		return;
 

@@ -20,6 +20,11 @@ public class PagoData extends DataBESA {
 	public String responder() {
 		return this.responderA;
 	}
+	
+	public void setResopnder( String id )
+	{
+		this.responderA = id;
+	}
 
 	public float getMonto() {
 		return this.pedidoPago;

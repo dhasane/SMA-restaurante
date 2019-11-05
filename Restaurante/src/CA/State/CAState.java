@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import BESA.Kernell.Agent.StateBESA;
+import Utils.Utils;
 
 public class CAState extends  StateBESA{
 	
@@ -31,14 +32,6 @@ public class CAState extends  StateBESA{
 		return this.fila.remove();
 	}
 	
-	public void print( String id)
-	{
-		System.out.print("contenido " + id +" : ");
-		for (String var : fila) 
-		{ 
-		    System.out.print(var + " | ");
-		}
-		System.out.println();
-	}
+	
 
 }

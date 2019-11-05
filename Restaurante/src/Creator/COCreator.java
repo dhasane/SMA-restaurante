@@ -23,11 +23,11 @@ public class COCreator {
 
 	// crea un unico agente, pasandole el tamaño del mapa y su nombre
 	private static void cocinero(String name) throws ExceptionBESA {
-		StructBESA c1Struct = new StructBESA();
+		StructBESA sb = new StructBESA();
 
-		Utils.agregarAEstructura(c1Struct, COSensorGuard.class);
+		Utils.agregarAEstructura(sb, COSensorGuard.class);
 
-		(new COAgent(name, new COState(), c1Struct, clave)).start();
+		(new COAgent(name, new COState(), sb, clave)).start();
 
 	}
 }

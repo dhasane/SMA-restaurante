@@ -28,16 +28,19 @@ public class CLCreator {
 
 	// crea un unico agente, pasandole el tamaño del mapa y su nombre
 	private static void cliente(String name) throws ExceptionBESA {
-		StructBESA c1Struct = new StructBESA();
+		StructBESA sb = new StructBESA();
 
-		Utils.agregarAEstructura(c1Struct, CLVerFila.class);
-		Utils.agregarAEstructura(c1Struct, CLHacerFila.class);
-		Utils.agregarAEstructura(c1Struct, CLVerFilaPago.class);
-		Utils.agregarAEstructura(c1Struct, CLHacerFilaPago.class);
-		Utils.agregarAEstructura(c1Struct, CLRealizarPago.class);
-		Utils.agregarAEstructura(c1Struct, CLRecibirMenu.class);
+		// interaccion con TP
+		Utils.agregarAEstructura(sb, CLVerFila.class);
+		Utils.agregarAEstructura(sb, CLHacerFila.class);
+		Utils.agregarAEstructura(sb, CLRecibirMenu.class);
 
-		CLAgent ca = new CLAgent(name, new CLState(), c1Struct, clave);
+		// interaccion con CA
+		Utils.agregarAEstructura(sb, CLVerFilaPago.class);
+		Utils.agregarAEstructura(sb, CLHacerFilaPago.class);
+		Utils.agregarAEstructura(sb, CLRealizarPago.class);
+
+		CLAgent ca = new CLAgent(name, new CLState(), sb, clave);
 		ca.start();
 		Utils.send(ca.getAdmLocal(), ca.getAid(), CLVerFila.class.getName(), new EmptyData());
 

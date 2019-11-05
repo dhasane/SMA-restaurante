@@ -27,14 +27,14 @@ public class TPCreator {
 	}
 
 	private static void agente(String name) throws ExceptionBESA {
-		StructBESA c1Struct = new StructBESA();
+		StructBESA sb = new StructBESA();
 
-		Utils.agregarAEstructura(c1Struct, TPAtenderFila.class);
-		Utils.agregarAEstructura(c1Struct, TPIncluirEnFila.class);
-		Utils.agregarAEstructura(c1Struct, TPProductRequest.class);
-		Utils.agregarAEstructura(c1Struct, TPResponderFila.class);
+		Utils.agregarAEstructura(sb, TPAtenderFila.class);
+		Utils.agregarAEstructura(sb, TPIncluirEnFila.class);
+		Utils.agregarAEstructura(sb, TPProductRequest.class);
+		Utils.agregarAEstructura(sb, TPResponderFila.class);
 
-		TPAgent tpa = new TPAgent(name, new TPState(), c1Struct, clave);
+		TPAgent tpa = new TPAgent(name, new TPState(), sb, clave);
 		tpa.start();
 		PeriodicDataBESA data = new PeriodicDataBESA(Utils.PERIODIC_TIME, Utils.PERIODIC_DELAY_TIME,
 				PeriodicGuardBESA.START_PERIODIC_CALL);

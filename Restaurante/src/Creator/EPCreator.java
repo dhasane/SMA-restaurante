@@ -23,10 +23,10 @@ public class EPCreator {
 
 	// crea un unico agente, pasandole el tamaño del mapa y su nombre
 	private static void agente(String name) throws ExceptionBESA {
-		StructBESA c1Struct = new StructBESA();
+		StructBESA sb = new StructBESA();
 
-		Utils.agregarAEstructura(c1Struct, EPSensorGuard.class);
+		Utils.agregarAEstructura(sb, EPSensorGuard.class);
 
-		(new EPAgent(name, new EPState(), c1Struct, clave)).start();
+		(new EPAgent(name, new EPState(), sb, clave)).start();
 	}
 }

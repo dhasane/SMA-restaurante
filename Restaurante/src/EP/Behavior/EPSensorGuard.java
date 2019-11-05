@@ -6,6 +6,7 @@ package EP.Behavior;
 
 import BESA.Kernell.Agent.Event.EventBESA;
 import EP.State.EPState;
+import Utils.Utils;
 import BESA.Kernell.Agent.GuardBESA;
 import BESA.Kernell.Agent.StateBESA;
 
@@ -28,7 +29,7 @@ public class EPSensorGuard extends GuardBESA{
     private void ponerComida(EventBESA ebesa, EPState state) 
     {
 
-        System.out.println("poniendo comida");
+        Utils.imp("poniendo comida");
         
 	}
 

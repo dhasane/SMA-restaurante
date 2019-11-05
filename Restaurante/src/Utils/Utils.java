@@ -2,12 +2,14 @@ package Utils;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Queue;
 
 import BESA.ExceptionBESA;
 import BESA.Kernell.Agent.StructBESA;
 import BESA.Kernell.Agent.Event.DataBESA;
 import BESA.Kernell.Agent.Event.EventBESA;
 import BESA.Kernell.System.AdmBESA;
+import Data.PedidoData;
 
 public class Utils {
 
@@ -37,8 +39,6 @@ public class Utils {
 
 		while (cos.hasNext()) {
 			Object element = cos.next();
-//			System.out.println("enviando mensaje a : " + element + " ");
-
 			send(admLocal, element, guardaRespuesta, data);
 			cantidad++;
 		}
@@ -62,14 +62,41 @@ public class Utils {
 		c1Struct.bindGuard(classS.getName(), classS);
 	}
 	
-	public static void imprimirLista( List<String> lista)
+	public static String ListaAString( List<String> lista)
 	{
 		String imp = "";
 		for (String var : lista) 
 		{ 
 			imp += var + " | ";
 		}
-		System.out.println(imp);
+		return(imp);
+	}
+	
+	public static String pedidosAString( List<PedidoData> lista)
+	{
+		String imp = "";
+		for (PedidoData var : lista) 
+		{ 
+			imp += var + " | ";
+		}
+		return(imp);
+	}
+	
+	public String queueAString( Queue<String> q )
+	{
+		String val = "";
+		for (String var : q) 
+		{ 
+		    val += var + " | ";
+		}
+		return val;
+	}
+	
+	// con el objetivo de poder cambiar la forma en la que se imprime
+	// ej, en vez de imprimir,dirigir a un archivo
+	public static void imp( Object obj )
+	{
+		System.out.println( obj );
 	}
 
 }

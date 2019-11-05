@@ -12,7 +12,9 @@ public class CLVerFilaPago extends GuardBESA {
 	@Override
 	public void funcExecGuard(EventBESA arg0) {
 		// TODO Auto-generated method stub
-		System.out.println(getAgent().getAlias() + " pide longitud de filas de pago");
+		Utils.imp(getAgent().getAlias() + " pide longitud de filas de pago");
+
+		((CLState) this.getAgent().getState()).sinPreguntas();
 
 		int cantidad = Utils.broadcast(getAgent().getAdmLocal(), Utils.Caja, CAResponderFilaPago.class.getName(),
 				new IDData(getAgent().getAid()));

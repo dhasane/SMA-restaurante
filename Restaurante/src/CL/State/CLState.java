@@ -7,9 +7,9 @@ public class CLState extends StateBESA {
 
 	private static final long serialVersionUID = 1L;
 
-	private int preguntas; 			// cantidad de preguntas que el agente ha realizado
-	private String filaAHacer;		// la mejor fila
-	private int longitudFilaAHacer;	// longitud de la fila
+	private int preguntas; // cantidad de preguntas que el agente ha realizado
+	private String filaAHacer; // la mejor fila
+	private int longitudFilaAHacer; // longitud de la fila
 
 	public CLState() {
 		this.preguntas = 0;
@@ -25,15 +25,20 @@ public class CLState extends StateBESA {
 		return this.preguntas;
 	}
 
+	public void sinPreguntas() {
+		this.preguntas = 0;
+		this.filaAHacer = "";
+		this.longitudFilaAHacer = 0;
+	}
+
 	public void setFila(String dueño, int longitud) {
 		if (this.filaAHacer.equals("") || longitud < this.longitudFilaAHacer) {
 			this.filaAHacer = dueño;
 			this.longitudFilaAHacer = longitud;
 		}
 	}
-	
-	public String getFila( )
-	{
+
+	public String getFila() {
 		return this.filaAHacer;
 	}
 

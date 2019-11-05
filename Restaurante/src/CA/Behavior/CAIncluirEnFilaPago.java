@@ -4,6 +4,7 @@ import BESA.Kernell.Agent.GuardBESA;
 import BESA.Kernell.Agent.Event.EventBESA;
 import CA.State.CAState;
 import Data.IDData;
+import Utils.Utils;
 
 public class CAIncluirEnFilaPago extends GuardBESA{
 
@@ -14,7 +15,7 @@ public class CAIncluirEnFilaPago extends GuardBESA{
     	
     	state.addFila( ((IDData)ebesa.getData()).getId() );
     	
-    	System.out.println( getAgent().getAlias() + " ahora tiene : " +state.getAtendiendo() );
-//    	state.print( getAgent().getAlias() );
+    	Utils.imp( getAgent().getAlias() + " ahora tiene : " +state.getAtendiendo() );
+    	
     }
 }

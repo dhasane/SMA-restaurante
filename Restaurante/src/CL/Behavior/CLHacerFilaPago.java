@@ -1,3 +1,4 @@
+
 package CL.Behavior;
 
 import BESA.Kernell.Agent.Event.EventBESA;
@@ -22,14 +23,14 @@ public class CLHacerFilaPago extends GuardBESA {
 		FilaData fd = (FilaData) ebesa.getData();
 		CLState cs = (CLState) getAgent().getState();
 
-//		System.out.println(getAgent().getAlias() + " evalua la mejor fila a tomar " + cs.getPreguntas() + " preguntas");
+//		Util.imp(getAgent().getAlias() + " evalua la mejor fila a tomar " + cs.getPreguntas() + " preguntas");
 
 		cs.setFila(fd.getDueño(), fd.getLogitud());
 		cs.reducirPregunta();
 
 		// en caso de ya haber visto todas las filas, entra a una
 		if (cs.getPreguntas() <= 0) {
-			System.out.println(getAgent().getAlias() + " entrando a fila de pago con " + cs.getFila());
+			Utils.imp(getAgent().getAlias() + " entrando a fila de pago con " + cs.getFila());
 			Utils.send(getAgent().getAdmLocal(), cs.getFila(), CAIncluirEnFilaPago.class.getName(),
 					new IDData(getAgent().getAid()));
 		}

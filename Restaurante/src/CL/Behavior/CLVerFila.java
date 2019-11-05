@@ -3,32 +3,25 @@ package CL.Behavior;
 import BESA.Kernell.Agent.Event.EventBESA;
 import CL.State.CLState;
 import BESA.Kernell.Agent.GuardBESA;
-import BESA.Kernell.Agent.StateBESA;
 import Data.IDData;
 import TP.Behavior.TPResponderFila;
 import Utils.Utils;
 
-public class CLVerFila extends GuardBESA{
+public class CLVerFila extends GuardBESA {
 
+	@Override
+	public void funcExecGuard(EventBESA ebesa) {
 
-    @Override
-    public boolean funcEvalBool(StateBESA objEvalBool) {
-        return true;
-    }
+//    	Util.imp( getAgent().getAlias() + " pide longitud de filas");
+		((CLState) this.getAgent().getState()).sinPreguntas();
+		int cantidad = Utils.broadcast(getAgent().getAdmLocal(), Utils.tomaPedido, TPResponderFila.class.getName(),
+				new IDData(getAgent().getAid()));
 
-    @Override
-    public void funcExecGuard(EventBESA ebesa) {
+		CLState cs = (CLState) getAgent().getState();
+		cs.setPreguntas(cantidad);
 
-    	System.out.println( getAgent().getAlias() + " pide longitud de filas");
-    	
-        int cantidad =  Utils.broadcast( getAgent().getAdmLocal() , Utils.tomaPedido, TPResponderFila.class.getName(), new IDData( getAgent().getAid() )  );
-        
-        CLState cs = (CLState)getAgent().getState();
-        cs.setPreguntas(cantidad);
-        
-        return;
+		return;
 
-    }
-
+	}
 
 }
