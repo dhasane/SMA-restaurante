@@ -16,7 +16,7 @@ public class COCreator {
 	}
 
 	// crea varios agentes
-	public static void crearCocineros(int cantidad) throws ExceptionBESA {
+	public static void crearCO(int cantidad) throws ExceptionBESA {
 		for (int a = 0; a < cantidad; ++a)
 			cocinero("CO" + Integer.toString(a));
 	}

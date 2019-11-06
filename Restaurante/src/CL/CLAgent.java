@@ -15,7 +15,6 @@ public class CLAgent extends AgentBESA {
     @Override
     public void setupAgent() {
         ReportBESA.info("SETUP AGENT -> " + getAlias());
-//        ClienteState cs = (ClienteState)this.getState();
     }
 
     @Override

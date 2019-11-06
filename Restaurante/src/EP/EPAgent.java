@@ -16,9 +16,7 @@ public class EPAgent extends AgentBESA {
     @Override
     public void setupAgent() {
         ReportBESA.info("SETUP AGENT -> " + getAlias());
-//        EPState cs = (EPState)this.getState();
-
-        getAdmLocal().bindSPServiceInDirectory(this.getAid() , Utils.EntregaPedido );
+        getAdmLocal().bindSPServiceInDirectory( this.getAid() , Utils.EntregaPedido );
 
     }
 

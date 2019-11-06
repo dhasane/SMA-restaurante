@@ -15,24 +15,23 @@ public class Restaurante {
     // CO -> cocinero		TODO
     // TP -> toma pedido	
     // EP -> entrega pedido	TODO
-    // CA -> caja			TODO
+    // CA -> caja
     // AY -> ayudante		TODO
 
     public static void main(String[] args) throws ExceptionBESA {
 
-        TPCreator.setClave(clave);
-        EPCreator.setClave(clave);
-        COCreator.setClave(clave);
+        TPCreator.setClave( clave );
+        EPCreator.setClave( clave );
+        COCreator.setClave( clave );
         
         int cantidadMaximaDeClientes = 7;
         
         TPCreator.crearTP( 4 );
-
-        EPCreator.crearEP( 5 );
-
-        COCreator.crearCocineros( 3 );
-        
         CACreator.crearCA( 4 );
+        
+        EPCreator.crearEP( 5 );
+        COCreator.crearCO( 3 );
+        
         
         // siendo que los clientes son los que inician la cadena,
         // deben ser llamados de ultimo, cuando ya todos los demas

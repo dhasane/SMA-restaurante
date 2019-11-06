@@ -3,7 +3,7 @@ package Creator;
 import BESA.ExceptionBESA;
 import BESA.Kernell.Agent.StructBESA;
 import EP.EPAgent;
-import EP.Behavior.EPSensorGuard;
+import EP.Behavior.PrepararPedido;
 import EP.State.EPState;
 import Utils.Utils;
 
@@ -25,7 +25,7 @@ public class EPCreator {
 	private static void agente(String name) throws ExceptionBESA {
 		StructBESA sb = new StructBESA();
 
-		Utils.agregarAEstructura(sb, EPSensorGuard.class);
+		Utils.agregarAEstructura(sb, PrepararPedido.class);
 
 		(new EPAgent(name, new EPState(), sb, clave)).start();
 	}
