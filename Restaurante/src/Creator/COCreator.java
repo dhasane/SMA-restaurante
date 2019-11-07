@@ -3,7 +3,7 @@ package Creator;
 import BESA.ExceptionBESA;
 import BESA.Kernell.Agent.StructBESA;
 import CO.COAgent;
-import CO.Behavior.COSensorGuard;
+import CO.Behavior.COCocinar;
 import CO.State.COState;
 import Utils.Utils;
 
@@ -25,7 +25,7 @@ public class COCreator {
 	private static void cocinero(String name) throws ExceptionBESA {
 		StructBESA sb = new StructBESA();
 
-		Utils.agregarAEstructura(sb, COSensorGuard.class);
+		Utils.agregarAEstructura(sb, COCocinar.class);
 
 		(new COAgent(name, new COState(), sb, clave)).start();
 

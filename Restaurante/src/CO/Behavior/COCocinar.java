@@ -8,7 +8,7 @@ import BESA.Kernell.Agent.Event.EventBESA;
 import BESA.Kernell.Agent.GuardBESA;
 import BESA.Kernell.Agent.StateBESA;
 
-public class COSensorGuard extends GuardBESA{
+public class COCocinar extends GuardBESA{
 
     @Override
     public boolean funcEvalBool(StateBESA objEvalBool) {

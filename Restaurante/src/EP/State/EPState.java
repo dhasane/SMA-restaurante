@@ -6,11 +6,22 @@ package EP.State;
 
 import BESA.Kernell.Agent.StateBESA;
 
-public class EPState extends  StateBESA{
+public class EPState extends StateBESA {
 
 	private static final long serialVersionUID = 1L;
 
-    public EPState() {
-    }
-    
+	private boolean enPreparacion;
+
+	public EPState() {
+		this.enPreparacion = false;
+	}
+
+	public void comenzandoPedido() {
+		this.enPreparacion = true;
+	}
+
+	public boolean preparando() {
+		return this.enPreparacion;
+	}
+
 }

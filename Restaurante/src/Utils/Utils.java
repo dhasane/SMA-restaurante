@@ -10,15 +10,15 @@ import BESA.Kernell.Agent.Event.DataBESA;
 import BESA.Kernell.Agent.Event.EventBESA;
 import BESA.Kernell.System.AdmBESA;
 import Data.PedidoData;
+import javafx.util.Pair;
 
 public class Utils {
 
 	// en esta clase están los datos y funciones para que puedan ser llamados por
 	// cualquier agente
-	
 
-    public static int PERIODIC_TIME = 1000;
-    public static int PERIODIC_DELAY_TIME = 100;
+	public static int PERIODIC_TIME = 1000;
+	public static int PERIODIC_DELAY_TIME = 100;
 
 	// nombres de los agentes
 	public static String Cocinero = "Cocinero";
@@ -26,7 +26,9 @@ public class Utils {
 	public static String tomaPedido = "tomaPedido";
 	public static String Puerta = "Puerta";
 	public static String Caja = "Caja";
-	
+
+	// metaparametro
+	public static int cantidadCriticaComida = 3;
 
 	// funciones genericas
 
@@ -61,42 +63,43 @@ public class Utils {
 		c1Struct.addBehavior(classS.getName());
 		c1Struct.bindGuard(classS.getName(), classS);
 	}
-	
-	public static String ListaAString( List<String> lista)
-	{
+
+	public static String ListaAString(List<String> lista) {
 		String imp = "";
-		for (String var : lista) 
-		{ 
+		for (String var : lista) {
 			imp += var + " | ";
 		}
-		return(imp);
+		return (imp);
 	}
-	
-	public static String pedidosAString( List<PedidoData> lista)
-	{
+
+	public static String pedidosAString(List<PedidoData> lista) {
 		String imp = "";
-		for (PedidoData var : lista) 
-		{ 
+		for (PedidoData var : lista) {
 			imp += var + " | ";
 		}
-		return(imp);
+		return (imp);
 	}
-	
-	public String queueAString( Queue<String> q )
-	{
+
+	public String queueAString(Queue<String> q) {
 		String val = "";
-		for (String var : q) 
-		{ 
-		    val += var + " | ";
+		for (String var : q) {
+			val += var + " | ";
 		}
 		return val;
 	}
-	
+
 	// con el objetivo de poder cambiar la forma en la que se imprime
 	// ej, en vez de imprimir,dirigir a un archivo
-	public static void imp( Object obj )
-	{
-		System.out.println( obj );
+	public static void imp(Object obj) {
+		System.out.println(obj);
+	}
+
+	public static String pedidosAStringPair(List<Pair<PedidoData, Boolean>> lista) {
+		String imp = "";
+		for (Pair<PedidoData, Boolean> var : lista) {
+			imp += var.getKey() + " | ";
+		}
+		return (imp);
 	}
 
 }
