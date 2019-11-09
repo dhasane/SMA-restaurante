@@ -1,7 +1,6 @@
 package Data;
 
 import java.util.List;
-
 import BESA.Kernell.Agent.Event.DataBESA;
 
 public class PreparacionData extends DataBESA {

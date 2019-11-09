@@ -1,7 +1,9 @@
 package Creator;
 
 import BESA.ExceptionBESA;
+import BESA.Kernell.Agent.PeriodicGuardBESA;
 import BESA.Kernell.Agent.StructBESA;
+import BESA.Util.PeriodicDataBESA;
 import CO.COAgent;
 import CO.Behavior.COCocinar;
 import CO.State.COState;
@@ -27,7 +29,8 @@ public class COCreator {
 
 		Utils.agregarAEstructura(sb, COCocinar.class);
 
-		(new COAgent(name, new COState(), sb, clave)).start();
+		COAgent co = new COAgent(name, new COState(), sb, clave);
+		co.start();
 
 	}
 }

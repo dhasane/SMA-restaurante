@@ -19,14 +19,14 @@ public class CARecibirPago extends GuardBESA {
 	public void funcExecGuard(EventBESA ebesa) {
 
 		PagoData fd = (PagoData) ebesa.getData();
-		
+
 		// agrega el pedido a los pedidos pagos y lo elimina de los pedidos no pagos
-		Utils.imp(" ---------------------------------------------- cambiando estado del pedido ");
-		PedidosRealizadosPagos.add( PedidosRealizadosNoPagos.get(fd.responder()) );
-		PedidosRealizadosNoPagos.remove( fd.responder() );
+		Utils.imp("cambiando estado del pedido para " + fd.responder());
+		PedidosRealizadosPagos.add(PedidosRealizadosNoPagos.get(fd.responder()));
+		PedidosRealizadosNoPagos.remove(fd.responder());
 		
 //		Utils.send( getAgent().getAdmLocal(), fd.responder(), CLEsperarPedido.class.getName(), new EmptyData());
-		
+
 	}
 
 }

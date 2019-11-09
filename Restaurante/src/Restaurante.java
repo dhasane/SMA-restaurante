@@ -5,6 +5,7 @@ import Creator.COCreator;
 import Creator.EPCreator;
 import Creator.TPCreator;
 import DOOR.CLDoor;
+import Informacion.Ingredientes;
 
 public class Restaurante {
 
@@ -31,6 +32,7 @@ public class Restaurante {
         
         EPCreator.crearEP( 5 );
         COCreator.crearCO( 3 );
+        
         
         
         // siendo que los clientes son los que inician la cadena,

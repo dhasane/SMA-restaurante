@@ -1,32 +1,28 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package EP.Behavior;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import BESA.Kernell.Agent.PeriodicGuardBESA;
 import BESA.Kernell.Agent.Event.EventBESA;
 import CO.Behavior.COCocinar;
+import Data.EmptyData;
 import Data.PedidoData;
-import Data.PreparacionData;
 import EP.State.EPState;
+import Informacion.Cocinar;
 import Informacion.Ingredientes;
 import Informacion.PedidosRealizadosPagos;
 import Utils.Utils;
 
-public class RevisarPedidos extends PeriodicGuardBESA {
+public class EPPrepararPedido extends PeriodicGuardBESA {
 
 	@Override
 	public void funcPeriodicExecGuard(EventBESA ebesa) {
 		EPState state = (EPState) this.getAgent().getState();
 
 		PedidoData pd = PedidosRealizadosPagos.iniciarPreparacion();
-
+		System.out.println("hola");
 		if (pd != null && !state.preparando()) {
-			state.comenzandoPedido();
+//			state.comenzandoPedido();
 
 			// revisar cantidaad ingredientes, en caso que haya pocos, le envia un mensaje a
 			// cocina para que prepare mas, con los ingredientes prepara la comida y le dice
@@ -51,16 +47,28 @@ public class RevisarPedidos extends PeriodicGuardBESA {
 			}
 
 			if (agregar.size() > 0) {
-				Utils.send(getAgent().getAdmLocal(), id // no sé a quien mandarle esto, se podria otra funcion periodica
-														// para lo cocineros, para que estén revisando si falta o no
-														// comida
-						, COCocinar.class.getName(), new PreparacionData(agregar, getAgent().getAid(), !factible));
+
+				boolean enviar = false;
+				if (agregar.size() == 0)
+					enviar = true;
+				Cocinar.add(agregar);
+				if (enviar)
+					Utils.broadcast(getAgent().getAdmLocal(), Utils.Cocinero, COCocinar.class.getName(),
+							new EmptyData());
 			}
 
-			if (factible) {
-				Utils.send(getAgent().getAdmLocal(), getAgent().getAid(), PrepararPedido.class.getName(), pd);
+				
+			while( pd.getPedido().size() > 0 )
+			{
+				String ing = pd.getPedido().get(0);
+				if( Ingredientes.consumirIngrediente( ing ) )
+				{
+					pd.getPedido().remove(0);
+				}
 			}
-
+//			Utils.imp
+			System.out.println("pedido completadoooooo, aqui se le deberia enviar un mensaje a "+ pd.getDueño());
+			System.out.println("holaaa");
 		}
 
 	}

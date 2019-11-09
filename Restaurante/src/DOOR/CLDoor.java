@@ -7,56 +7,51 @@ import CL.CLAgent;
 import Creator.CLCreator;
 
 public class CLDoor extends Thread {
-	
+
 	private int cantidad;
 	private int total;
 	private int maximo;
-	
-	public CLDoor( double llave, int maximo)
-	{
+
+	public CLDoor(double llave, int maximo) {
 		CLCreator.setClave(llave);
 		this.total = 0;
 		this.start();
 		this.maximo = maximo;
 	}
-	
+
 	@Override
-    public void run() {
-        
-		while ( true )
-		{
-			if ( cantidad < maximo )
-			this.createCL();
+	public void run() {
+
+		while (true) {
+			if (cantidad < maximo)
+				this.createCL();
 			try {
-				TimeUnit.MILLISECONDS.sleep( funcionDeTiempo() );
+				TimeUnit.MILLISECONDS.sleep(funcionDeTiempo());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-    }
-	
-	int funcionDeTiempo()
-	{
-		// por el momento solo es cada segundo 
+	}
+
+	int funcionDeTiempo() {
+		// por el momento solo es cada segundo
 		return 1000;
 	}
-	
-	// crea un agente 
-	private void createCL()
-	{
+
+	// crea un agente
+	private void createCL() {
 		try {
-			CLCreator.crearCL( this.total );
-			this.total ++ ;
-			this.cantidad ++;
+			CLCreator.crearCL(this.total);
+			this.total++;
+			this.cantidad++;
 		} catch (ExceptionBESA e) {
 			e.printStackTrace();
 		}
 	}
-	
-	// destruye un agente, aun falta ver como realizar el llamado desde el agente 
-	private void destroyCL( CLAgent ca )
-	{
+
+	// destruye un agente, aun falta ver como realizar el llamado desde el agente
+	private void destroyCL(CLAgent ca) {
 		ca.shutdownAgent();
-		this.cantidad --;
+		this.cantidad--;
 	}
 }

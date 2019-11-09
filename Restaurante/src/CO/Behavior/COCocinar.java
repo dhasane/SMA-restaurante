@@ -5,18 +5,20 @@
 package CO.Behavior;
 
 import BESA.Kernell.Agent.Event.EventBESA;
+import Informacion.Cocinar;
+import Informacion.Ingredientes;
 import BESA.Kernell.Agent.GuardBESA;
-import BESA.Kernell.Agent.StateBESA;
 
-public class COCocinar extends GuardBESA{
+public class COCocinar extends GuardBESA {
 
-    @Override
-    public boolean funcEvalBool(StateBESA objEvalBool) {
-        return true;
-    }
+	@Override
+	public void funcExecGuard(EventBESA ebesa) {
 
-    @Override
-    public void funcExecGuard(EventBESA ebesa) {
-    }
+		System.out.println(" holaaa soy " + getAgent().getAlias() + "ito-kun ");
+		while (Cocinar.size() > 0) {
+			String preparar = Cocinar.pop();
+			Ingredientes.agregarIngrediente(preparar);
+		}
+	}
 
 }

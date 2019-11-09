@@ -1,9 +1,11 @@
 package Creator;
 
 import BESA.ExceptionBESA;
+import BESA.Kernell.Agent.PeriodicGuardBESA;
 import BESA.Kernell.Agent.StructBESA;
+import BESA.Util.PeriodicDataBESA;
 import EP.EPAgent;
-import EP.Behavior.RevisarPedidos;
+import EP.Behavior.EPPrepararPedido;
 import EP.State.EPState;
 import Utils.Utils;
 
@@ -25,8 +27,15 @@ public class EPCreator {
 	private static void agente(String name) throws ExceptionBESA {
 		StructBESA sb = new StructBESA();
 
-		Utils.agregarAEstructura(sb, RevisarPedidos.class);
+//		Utils.agregarAEstructura(sb, EPRevisarPedidos.class);
+		Utils.agregarAEstructura(sb, EPPrepararPedido.class);
 
-		(new EPAgent(name, new EPState(), sb, clave)).start();
+		EPAgent ep = new EPAgent(name, new EPState(), sb, clave);
+		ep.start();
+		
+		PeriodicDataBESA data = new PeriodicDataBESA(Utils.PERIODIC_TIME, Utils.PERIODIC_DELAY_TIME,
+				PeriodicGuardBESA.START_PERIODIC_CALL);
+
+		Utils.send(ep.getAdmLocal(), ep.getAid(), EPPrepararPedido.class.getName(), data);
 	}
 }

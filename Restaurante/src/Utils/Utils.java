@@ -91,7 +91,7 @@ public class Utils {
 	// con el objetivo de poder cambiar la forma en la que se imprime
 	// ej, en vez de imprimir,dirigir a un archivo
 	public static void imp(Object obj) {
-		System.out.println(obj);
+//		System.out.println(obj);
 	}
 
 	public static String pedidosAStringPair(List<Pair<PedidoData, Boolean>> lista) {

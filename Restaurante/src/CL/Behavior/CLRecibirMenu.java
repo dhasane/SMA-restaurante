@@ -14,11 +14,6 @@ import Utils.Utils;
 public class CLRecibirMenu extends GuardBESA {
 
 	@Override
-	public boolean funcEvalBool(StateBESA objEvalBool) {
-		return true;
-	}
-
-	@Override
 	public void funcExecGuard(EventBESA ebesa) {
 
 		MenuData fd = (MenuData) ebesa.getData();
