@@ -7,6 +7,7 @@ import CL.Behavior.CLHacerFila;
 import CL.Behavior.CLHacerFilaPago;
 import CL.Behavior.CLRealizarPago;
 import CL.Behavior.CLRecibirMenu;
+import CL.Behavior.CLRecogerPedido;
 import CL.Behavior.CLVerFila;
 import CL.Behavior.CLVerFilaPago;
 import CL.State.CLState;
@@ -39,6 +40,9 @@ public class CLCreator {
 		Utils.agregarAEstructura(sb, CLVerFilaPago.class);
 		Utils.agregarAEstructura(sb, CLHacerFilaPago.class);
 		Utils.agregarAEstructura(sb, CLRealizarPago.class);
+
+		// interaccion con EP
+		Utils.agregarAEstructura(sb, CLRecogerPedido.class);
 
 		CLAgent ca = new CLAgent(name, new CLState(), sb, clave);
 		ca.start();

@@ -1,9 +1,7 @@
 package Creator;
 
 import BESA.ExceptionBESA;
-import BESA.Kernell.Agent.PeriodicGuardBESA;
 import BESA.Kernell.Agent.StructBESA;
-import BESA.Util.PeriodicDataBESA;
 import CO.COAgent;
 import CO.Behavior.COCocinar;
 import CO.State.COState;

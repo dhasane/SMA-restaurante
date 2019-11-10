@@ -6,6 +6,7 @@ import BESA.Kernell.Agent.Event.DataBESA;
 
 public class MenuData extends DataBESA {
 
+	private static final long serialVersionUID = 4882278514149150657L;
 	private List<String> comida;
 	private String responderA;
 

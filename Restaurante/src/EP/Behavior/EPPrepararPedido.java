@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import BESA.Kernell.Agent.PeriodicGuardBESA;
 import BESA.Kernell.Agent.Event.EventBESA;
+import CL.Behavior.CLRecogerPedido;
 import CO.Behavior.COCocinar;
 import Data.EmptyData;
 import Data.PedidoData;
@@ -20,9 +21,7 @@ public class EPPrepararPedido extends PeriodicGuardBESA {
 		EPState state = (EPState) this.getAgent().getState();
 
 		PedidoData pd = PedidosRealizadosPagos.iniciarPreparacion();
-		System.out.println("hola");
 		if (pd != null && !state.preparando()) {
-//			state.comenzandoPedido();
 
 			// revisar cantidaad ingredientes, en caso que haya pocos, le envia un mensaje a
 			// cocina para que prepare mas, con los ingredientes prepara la comida y le dice
@@ -34,14 +33,11 @@ public class EPPrepararPedido extends PeriodicGuardBESA {
 			// que preparen mas, y esta guarda termina
 			// entonce lo unico que deberia hhacer esta guarda, es verificar si hayy
 			// suficientes ingredientes
-			boolean factible = true;
 			List<String> agregar = new ArrayList<String>();
 
 			// revisarIngredientes
 			for (String ing : pd.getPedido()) {
 				int cantidad = Ingredientes.getCantidad(ing);
-				if (cantidad == 0)
-					factible &= false;
 				if (cantidad < Utils.cantidadCriticaComida)
 					agregar.add(ing);
 			}
@@ -49,7 +45,7 @@ public class EPPrepararPedido extends PeriodicGuardBESA {
 			if (agregar.size() > 0) {
 
 				boolean enviar = false;
-				if (agregar.size() == 0)
+				if (agregar.size() != 0)
 					enviar = true;
 				Cocinar.add(agregar);
 				if (enviar)
@@ -57,18 +53,17 @@ public class EPPrepararPedido extends PeriodicGuardBESA {
 							new EmptyData());
 			}
 
-				
-			while( pd.getPedido().size() > 0 )
-			{
-				String ing = pd.getPedido().get(0);
-				if( Ingredientes.consumirIngrediente( ing ) )
-				{
+			// busy waiting, pero tampoco es como que puedan hacer mucho mas si no hay
+			// ingredientes ...
+			List<String> preparado = new ArrayList<String>();
+			while (pd.getPedido().size() > 0) {
+				if (Ingredientes.consumirIngrediente(pd.getPedido().get(0))) {
+					preparado.add(pd.getPedido().get(0));
 					pd.getPedido().remove(0);
 				}
 			}
-//			Utils.imp
-			System.out.println("pedido completadoooooo, aqui se le deberia enviar un mensaje a "+ pd.getDueño());
-			System.out.println("holaaa");
+			Utils.send(getAgent().getAdmLocal(), pd.getDueño(), CLRecogerPedido.class.getName(),
+					new PedidoData(preparado, getAgent().getAid()));
 		}
 
 	}

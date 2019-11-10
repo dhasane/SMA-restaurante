@@ -3,12 +3,12 @@ package DOOR;
 import java.util.concurrent.TimeUnit;
 
 import BESA.ExceptionBESA;
-import CL.CLAgent;
+import BESA.Kernell.Agent.AgentBESA;
 import Creator.CLCreator;
 
 public class CLDoor extends Thread {
 
-	private int cantidad;
+	private static int cantidad;
 	private int total;
 	private int maximo;
 
@@ -43,15 +43,15 @@ public class CLDoor extends Thread {
 		try {
 			CLCreator.crearCL(this.total);
 			this.total++;
-			this.cantidad++;
+			cantidad++;
 		} catch (ExceptionBESA e) {
 			e.printStackTrace();
 		}
 	}
 
 	// destruye un agente, aun falta ver como realizar el llamado desde el agente
-	private void destroyCL(CLAgent ca) {
-		ca.shutdownAgent();
-		this.cantidad--;
+	public static void destroyCL(AgentBESA agentBESA) {
+		agentBESA.shutdownAgent();
+		cantidad--;
 	}
 }

@@ -5,7 +5,6 @@ import BESA.Kernell.Agent.KernellAgentExceptionBESA;
 import BESA.Kernell.Agent.StateBESA;
 import BESA.Kernell.Agent.StructBESA;
 import BESA.Log.ReportBESA;
-import CO.State.COState;
 import Utils.Utils;
 
 public class CAAgent extends AgentBESA {

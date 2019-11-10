@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import BESA.Kernell.Agent.GuardBESA;
-import BESA.Kernell.Agent.StateBESA;
 import Data.MenuData;
 import Data.PedidoData;
 import TP.Behavior.TPProductRequest;

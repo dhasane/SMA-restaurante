@@ -8,10 +8,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import BESA.Kernell.Agent.StateBESA;
-import Utils.Utils;
 
-public class CAState extends  StateBESA{
-	
+public class CAState extends StateBESA {
+
+	private static final long serialVersionUID = 3698051779850902560L;
 	private Queue<String> fila;
 
 	public CAState() {
@@ -21,17 +21,13 @@ public class CAState extends  StateBESA{
 	public int getAtendiendo() {
 		return this.fila.size();
 	}
-	
-	public void addFila( String id )
-	{
+
+	public void addFila(String id) {
 		this.fila.add(id);
 	}
-	
-	public String getSiguiente()
-	{
+
+	public String getSiguiente() {
 		return this.fila.remove();
 	}
-	
-	
 
 }

@@ -10,7 +10,6 @@ import BESA.Kernell.Agent.Event.DataBESA;
 import BESA.Kernell.Agent.Event.EventBESA;
 import BESA.Kernell.System.AdmBESA;
 import Data.PedidoData;
-import javafx.util.Pair;
 
 public class Utils {
 
@@ -29,6 +28,8 @@ public class Utils {
 
 	// metaparametro
 	public static int cantidadCriticaComida = 3;
+	public static int tiempoMaximoComida = 15; // realmente el maximo puede ser 20, ya que termina siendo mas bien min + max
+	public static int tiempoMinimoComida = 5;
 
 	// funciones genericas
 
@@ -94,12 +95,5 @@ public class Utils {
 //		System.out.println(obj);
 	}
 
-	public static String pedidosAStringPair(List<Pair<PedidoData, Boolean>> lista) {
-		String imp = "";
-		for (Pair<PedidoData, Boolean> var : lista) {
-			imp += var.getKey() + " | ";
-		}
-		return (imp);
-	}
 
 }

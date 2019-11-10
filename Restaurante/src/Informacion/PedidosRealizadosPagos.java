@@ -1,35 +1,43 @@
 package Informacion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import Data.PedidoData;
-import Utils.Utils;
-import javafx.util.Pair;
 
 public class PedidosRealizadosPagos {
 
-	private static List<Pair<PedidoData, Boolean>> pedidosPagos;
+	private static List<PedidoData> pedidosPagos;
+	private static Map<PedidoData, Boolean> estado;
 
 	private static synchronized void create() {
-		if (pedidosPagos == null)
-			pedidosPagos = new ArrayList<Pair<PedidoData, Boolean>>();
+		if (pedidosPagos == null) {
+			pedidosPagos = new ArrayList<PedidoData>();
+			estado = new HashMap<PedidoData, Boolean>();
+			for (PedidoData pd : pedidosPagos) {
+				estado.put(pd, false);
+			}
+		}
+
 	}
 
 	// agrega un pedido
 	public synchronized static void add(PedidoData pd) {
 		if (pd != null) {
 			create();
-			pedidosPagos.add(new Pair<PedidoData, Boolean>(pd, false));
-			Utils.imp("Pedidos pagos : " + Utils.pedidosAStringPair(pedidosPagos));
+			pedidosPagos.add(pd);
+			estado.put(pd, false);
+//			Utils.imp("Pedidos pagos : " + Utils.pedidosAStringPair(pedidosPagos));
 		}
 	}
 
 	// retorna el pedido de un id
 	public synchronized static PedidoData get(String id) {
 		create();
-		for (Pair<PedidoData, Boolean> pd : pedidosPagos) {
-			if (pd.getKey().getDueño().equals(id)) {
-				return pd.getKey();
+		for (PedidoData pd : pedidosPagos) {
+			if (pd.getDueño().equals(id)) {
+				return pd;
 			}
 		}
 		return null;
@@ -37,10 +45,10 @@ public class PedidosRealizadosPagos {
 
 	public synchronized static PedidoData iniciarPreparacion() {
 		create();
-		for (Pair<PedidoData, Boolean> pd : pedidosPagos) {
-			if (!pd.getValue()) {
-				pd = new Pair<PedidoData, Boolean>(pd.getKey(), true);
-				return pd.getKey();
+		for (PedidoData pd : pedidosPagos) {
+			if (!estado.get(pd)) {
+				estado.put(pd, true);
+				return pd;
 			}
 		}
 		return null;
@@ -49,9 +57,10 @@ public class PedidosRealizadosPagos {
 	// elimina el pedido de un id
 	public synchronized static void remove(String idDueño) {
 		create();
-		for (Pair<PedidoData, Boolean> pd : pedidosPagos) {
-			if (((PedidoData) pd.getKey()).getDueño().equals(idDueño)) {
+		for (PedidoData pd : pedidosPagos) {
+			if (pd.getDueño().equals(idDueño)) {
 				pedidosPagos.remove(pd);
+				estado.remove(pd);
 				return;
 			}
 		}

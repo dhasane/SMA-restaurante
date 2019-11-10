@@ -5,6 +5,7 @@ import Informacion.PedidosRealizadosNoPagos;
 
 public class PagoData extends DataBESA {
 
+	private static final long serialVersionUID = -3697775504214992200L;
 	private String responderA;
 	private float pedidoPago;
 

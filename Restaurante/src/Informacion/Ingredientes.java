@@ -10,9 +10,9 @@ public class Ingredientes {
 	private static List<String> ingredientes;
 	private static Map<String, Integer> cantidad;
 	private static Map<String, Integer> tiempoPreparacion;
-	
+
 	private static void createIngredientes() {
-		
+
 		if( ingredientes == null)
 		{
 			ingredientes = new ArrayList<String>();
@@ -20,56 +20,52 @@ public class Ingredientes {
 			ingredientes.add("lentejas");
 			ingredientes.add("pollo");
 			ingredientes.add("carne");
-			
-			
+
+
 			cantidad = new HashMap<String, Integer>();
-			
+
 			for ( String str : ingredientes)
 			{
 				cantidad.put(str, 0);
 			}
-			
+
 			tiempoPreparacion = new HashMap<String, Integer>();
-			
+
 			tiempoPreparacion.put("arroz", 4);
 			tiempoPreparacion.put("lentejas", 6);
 			tiempoPreparacion.put("pollo", 7);
 			tiempoPreparacion.put("carne", 9);
 		}
 	}
-	
+
 	public static List<String> getIngredientes()
 	{
 		createIngredientes();
 		return ingredientes;
 	}
-	
+
 	public static int getCantidad( String ing )
 	{
 		createIngredientes();
 		return cantidad.get(ing);
 	}
-	
+
 	private static void preparacion( String ing )
 	{
 		try {
 			TimeUnit.MILLISECONDS.sleep( tiempoPreparacion.get(ing) );
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public synchronized static void agregarIngrediente( String ing )
 	{
 		createIngredientes();
-		if ( cantidad.get(ing) > 0 )
-		{
-			preparacion( ing );
-			cantidad.put(ing, cantidad.get(ing) - 1 );
-		}
+		preparacion( ing ); // el tiempo que demora la preparacion
+		cantidad.put(ing, cantidad.get(ing) + 1 );
 	}
-	
+
 	public synchronized static boolean consumirIngrediente( String ing )
 	{
 		createIngredientes();

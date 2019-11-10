@@ -14,7 +14,6 @@ public class COCocinar extends GuardBESA {
 	@Override
 	public void funcExecGuard(EventBESA ebesa) {
 
-		System.out.println(" holaaa soy " + getAgent().getAlias() + "ito-kun ");
 		while (Cocinar.size() > 0) {
 			String preparar = Cocinar.pop();
 			Ingredientes.agregarIngrediente(preparar);
