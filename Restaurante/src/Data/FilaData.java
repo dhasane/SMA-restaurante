@@ -8,12 +8,12 @@ public class FilaData extends DataBESA {
 
 	private static final long serialVersionUID = -5892807834296218923L;
 	private int longitud;
-	private String idDueño;
+	private String idOwner;
 	
-	public FilaData( int logitud, String idDueño )
+	public FilaData( int logitud, String idOwner )
 	{
 		this.longitud = logitud;
-		this.idDueño = idDueño;
+		this.idOwner = idOwner;
 	}
 	
 	public int getLogitud()
@@ -21,8 +21,8 @@ public class FilaData extends DataBESA {
 		return this.longitud;
 	}
 	
-	public String getDueño()
+	public String getOwner()
 	{
-		return this.idDueño;
+		return this.idOwner;
 	}
 }

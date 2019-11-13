@@ -62,7 +62,7 @@ public class EPPrepararPedido extends PeriodicGuardBESA {
 					pd.getPedido().remove(0);
 				}
 			}
-			Utils.send(getAgent().getAdmLocal(), pd.getDueño(), CLRecogerPedido.class.getName(),
+			Utils.send(getAgent().getAdmLocal(), pd.getOwner(), CLRecogerPedido.class.getName(),
 					new PedidoData(preparado, getAgent().getAid()));
 		}
 

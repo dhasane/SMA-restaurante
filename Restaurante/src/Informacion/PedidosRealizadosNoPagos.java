@@ -21,16 +21,16 @@ public class PedidosRealizadosNoPagos {
 
 	public static PedidoData get(String id) {
 		for (PedidoData pd : pedidosNoPagos) {
-			if (pd.getDueño().equals(id)) {
+			if (pd.getOwner().equals(id)) {
 				return pd;
 			}
 		}
 		return null;
 	}
 
-	public synchronized static void remove(String idDueño) {
+	public synchronized static void remove(String idOwner) {
 		for (PedidoData pd : pedidosNoPagos) {
-			if (pd.getDueño().equals(idDueño)) {
+			if (pd.getOwner().equals(idOwner)) {
 				pedidosNoPagos.remove(pd);
 				return;
 			}

@@ -8,20 +8,20 @@ public class PedidoData extends DataBESA {
 
 	private static final long serialVersionUID = 3494993695923009524L;
 	private List<String> pedido;
-	private String dueño;
+	private String owner;
 
-	public PedidoData(List<String> pedido, String dueño) {
+	public PedidoData(List<String> pedido, String owner) {
 		this.pedido = pedido;
-		this.dueño = dueño;
+		this.owner = owner;
 	}
 
 	public List<String> getPedido() {
 		return this.pedido;
 	}
 	
-	public String getDueño()
+	public String getOwner()
 	{
-		return this.dueño;
+		return this.owner;
 	}
 
 }

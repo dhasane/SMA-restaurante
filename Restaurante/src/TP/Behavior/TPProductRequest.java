@@ -16,7 +16,7 @@ public class TPProductRequest extends GuardBESA {
 		PedidoData pd = (PedidoData) ebesa.getData();
 		PedidosRealizadosNoPagos.add(pd);
 		// decirle al cliente que pague
-		Utils.send(getAgent().getAdmLocal(), pd.getDueño(), CLVerFilaPago.class.getName(), new EmptyData());
+		Utils.send(getAgent().getAdmLocal(), pd.getOwner(), CLVerFilaPago.class.getName(), new EmptyData());
 
 	}
 

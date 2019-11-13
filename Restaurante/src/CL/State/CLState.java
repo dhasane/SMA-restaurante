@@ -31,9 +31,9 @@ public class CLState extends StateBESA {
 		this.longitudFilaAHacer = 0;
 	}
 
-	public void setFila(String dueño, int longitud) {
+	public void setFila(String dueno, int longitud) {
 		if (this.filaAHacer.equals("") || longitud < this.longitudFilaAHacer) {
-			this.filaAHacer = dueño;
+			this.filaAHacer = dueno;
 			this.longitudFilaAHacer = longitud;
 		}
 	}

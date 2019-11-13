@@ -36,7 +36,7 @@ public class PedidosRealizadosPagos {
 	public synchronized static PedidoData get(String id) {
 		create();
 		for (PedidoData pd : pedidosPagos) {
-			if (pd.getDueño().equals(id)) {
+			if (pd.getOwner().equals(id)) {
 				return pd;
 			}
 		}
@@ -55,10 +55,10 @@ public class PedidosRealizadosPagos {
 	}
 
 	// elimina el pedido de un id
-	public synchronized static void remove(String idDueño) {
+	public synchronized static void remove(String idOwner) {
 		create();
 		for (PedidoData pd : pedidosPagos) {
-			if (pd.getDueño().equals(idDueño)) {
+			if (pd.getOwner().equals(idOwner)) {
 				pedidosPagos.remove(pd);
 				estado.remove(pd);
 				return;

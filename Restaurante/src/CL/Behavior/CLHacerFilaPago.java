@@ -25,7 +25,7 @@ public class CLHacerFilaPago extends GuardBESA {
 
 //		Util.imp(getAgent().getAlias() + " evalua la mejor fila a tomar " + cs.getPreguntas() + " preguntas");
 
-		cs.setFila(fd.getDueño(), fd.getLogitud());
+		cs.setFila(fd.getOwner(), fd.getLogitud());
 		cs.reducirPregunta();
 
 		// en caso de ya haber visto todas las filas, entra a una
