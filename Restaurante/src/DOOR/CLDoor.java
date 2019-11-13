@@ -8,7 +8,7 @@ import Creator.CLCreator;
 
 public class CLDoor extends Thread {
 
-	private static int cantidad;
+	private static int cantidad; 
 	private int total;
 	private int maximo;
 
