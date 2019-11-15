@@ -61,8 +61,8 @@ public class Utils {
 
 	// para evitar confision con nombres de las guardas
 	public static void agregarAEstructura(StructBESA c1Struct, Class classS) throws ExceptionBESA {
-		c1Struct.addBehavior(classS.getName());
-		c1Struct.bindGuard(classS.getName(), classS);
+		c1Struct.addBehavior(classS.getName() + "Behavior" );
+		c1Struct.bindGuard(classS.getName() + "Behavior" , classS);
 	}
 
 	public static String ListaAString(List<String> lista) {

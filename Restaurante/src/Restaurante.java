@@ -19,9 +19,12 @@ public class Restaurante {
 
 	public static void main(String[] args) throws ExceptionBESA {
 
+		CACreator.setClave(clave);
+		CLCreator.setClave(clave);
+		COCreator.setClave(clave);
 		TPCreator.setClave(clave);
 		EPCreator.setClave(clave);
-		COCreator.setClave(clave);
+
 
 		int cantidadMaximaDeClientes = 7;
 
