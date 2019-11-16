@@ -53,19 +53,15 @@ public class Restaurante {
 		CLDoor cld = new CLDoor(clave);
 		cld.start();
 
-		System.out.println("en esperaaaaa");
 		// tiempo de prueba
-		try {
-			TimeUnit.MINUTES.sleep(1);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			TimeUnit.MINUTES.sleep(1);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 		
-		cld.destruir();
+//		cld.cerrarEntrada();
 		
-		// matar a todos los agentes o algo
-		
-		Resultados.mostrarResultados();
 		return;
 	}
 

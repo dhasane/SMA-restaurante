@@ -10,11 +10,11 @@ public class CLState extends StateBESA {
 	private int preguntas; // cantidad de preguntas que el agente ha realizado
 	private String filaAHacer; // la mejor fila
 	private int longitudFilaAHacer; // longitud de la fila
+	private long tiempoEntrada;
 
 	public CLState() {
-		this.preguntas = 0;
-		this.filaAHacer = "";
-		this.longitudFilaAHacer = 0;
+		tiempoEntrada = System.nanoTime();
+		this.sinPreguntas();
 	}
 
 	public void setPreguntas(int cantidad) {
@@ -45,5 +45,10 @@ public class CLState extends StateBESA {
 	public void reducirPregunta() {
 		this.preguntas--;
 	}
-
+	
+	public long getTiempoEntrada()
+	{
+		return this.tiempoEntrada;
+	}
+	
 }

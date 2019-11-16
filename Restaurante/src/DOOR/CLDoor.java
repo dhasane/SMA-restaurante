@@ -6,22 +6,24 @@ import java.util.concurrent.TimeUnit;
 
 import BESA.ExceptionBESA;
 import BESA.Kernell.Agent.AgentBESA;
+import CL.CLAgent;
+import CL.State.CLState;
 import Creator.CLCreator;
 import Resultados.Resultados;
 import Utils.Utils;
 
 public class CLDoor extends Thread {
 
-	private static int cantidad;
-	private int total;
-	private int maximo;
+	private static int cantidad;// cantidad de personas actualmente dentro del restaurante
+	private int total;			// total de agentes que han entrado durante la simulacion
+	private int cupo; 		// cupo maximo para agentes dentro del restaurante
 	private Queue<Long> espera;
 	private boolean continuar;
 
 	public CLDoor(double llave) {
 		CLCreator.setClave(llave);
 		this.total = 0;
-		this.maximo = Utils.cantidadMaximaDeClientes;
+		this.cupo = Utils.cantidadMaximaDeClientes;
 		espera = new LinkedList<Long>();
 		this.continuar = true;
 	}
@@ -30,23 +32,18 @@ public class CLDoor extends Thread {
 	public void run() {
 
 		while (this.continuar) {
-			if (cantidad < maximo)
-			{
-				if ( !espera.isEmpty())
-				{
-					long tt = System.nanoTime() - espera.remove() ;
-					Resultados.agregarTiempoClienteEsperaFilaExternaPromedio( tt ) ;
+			if (cantidad < cupo) {
+				if (!espera.isEmpty()) {
+					long tt = System.nanoTime() - espera.remove();
+					Resultados.agregarTiempoClienteEsperaFilaExterna(tt);
 				}
-				
 
 				this.createCL();
-				
-			}
-			else
-			{
+
+			} else {
 				espera.add(System.nanoTime());
 			}
-				
+
 			try {
 				TimeUnit.SECONDS.sleep(funcionDeTiempo());
 			} catch (InterruptedException e) {
@@ -66,6 +63,11 @@ public class CLDoor extends Thread {
 			CLCreator.crearCL(this.total);
 			this.total++;
 			cantidad++;
+			if ( this.total > Utils.clientesAAtender )
+			{
+				this.cerrarEntrada();
+			}
+
 		} catch (ExceptionBESA e) {
 			e.printStackTrace();
 		}
@@ -73,13 +75,23 @@ public class CLDoor extends Thread {
 
 	// destruye un agente, aun falta ver como realizar el llamado desde el agente
 	public static void destroyCL(AgentBESA agentBESA) {
+
+		CLState cls = (CLState) ((CLAgent) agentBESA).getState();
+		long tt = System.nanoTime() - cls.getTiempoEntrada();
+		Resultados.agregarATiempoClienteVisitaCompleta(tt);
+
 		agentBESA.shutdownAgent();
 		cantidad--;
+
+		// solo mostrara los resultados una vez se desocupe el restaurante
+		if (cantidad == 0) {
+			Resultados.mostrarResultados();
+		}
 	}
 
-	public void destruir() {
+	public void cerrarEntrada() {
 		this.continuar = false;
 		System.out.println("se cierra la puerta del restaurante");
-		
+
 	}
 }
