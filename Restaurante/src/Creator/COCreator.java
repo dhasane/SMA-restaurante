@@ -16,18 +16,18 @@ public class COCreator {
 	}
 
 	// crea varios agentes
-	public static void crearCO(int cantidad) throws ExceptionBESA {
-		for (int a = 0; a < cantidad; ++a)
-			cocinero("CO" + Integer.toString(a));
+	public static void crearCO(int[][] cantidad) throws ExceptionBESA {
+		for (int a = 0; a < cantidad.length; ++a)
+			cocinero("CO" + Integer.toString(a), cantidad[a]);
 	}
 
 	// crea un unico agente, pasandole el tamaño del mapa y su nombre
-	private static void cocinero(String name) throws ExceptionBESA {
+	private static void cocinero(String name, int[] pos) throws ExceptionBESA {
 		StructBESA sb = new StructBESA();
 
 		Utils.agregarAEstructura(sb, COCocinar.class);
 
-		COAgent co = new COAgent(name, new COState(), sb, clave);
+		COAgent co = new COAgent(name, new COState(), sb, clave, pos);
 		co.start();
 
 	}

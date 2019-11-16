@@ -9,9 +9,10 @@ import CO.Behavior.COCocinar;
 import Data.EmptyData;
 import Data.PedidoData;
 import EP.State.EPState;
-import Informacion.Cocinar;
-import Informacion.Ingredientes;
-import Informacion.PedidosRealizadosPagos;
+import Mundo.Cocinar;
+import Mundo.Ingredientes;
+import Mundo.PedidosRealizadosPagos;
+import Mundo.Mapa.Mapa;
 import Utils.Utils;
 
 public class EPPrepararPedido extends PeriodicGuardBESA {
@@ -65,6 +66,7 @@ public class EPPrepararPedido extends PeriodicGuardBESA {
 			Utils.send(getAgent().getAdmLocal(), pd.getOwner(), CLRecogerPedido.class.getName(),
 					new PedidoData(preparado, getAgent().getAid()));
 		}
+		Mapa.repaint();
 
 	}
 

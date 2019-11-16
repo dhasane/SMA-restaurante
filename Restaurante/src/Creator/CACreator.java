@@ -21,12 +21,12 @@ public class CACreator {
 	}
 
 	// crea varios agentes
-	public static void crearCA(int cantidad) throws ExceptionBESA {
-		for (int a = 0; a < cantidad; ++a)
-			agente("CA" + Integer.toString(a));
+	public static void crearCA(int[][]  cantidad) throws ExceptionBESA {
+		for (int a = 0; a < cantidad.length; ++a)
+			agente("CA" + Integer.toString(a), cantidad[a]);
 	}
 
-	private static void agente(String name) throws ExceptionBESA {
+	private static void agente(String name, int[] pos) throws ExceptionBESA {
 		StructBESA sb = new StructBESA();
 
 		Utils.agregarAEstructura(sb, CAResponderFilaPago.class);
@@ -34,10 +34,9 @@ public class CACreator {
 		Utils.agregarAEstructura(sb, CARecibirPago.class);
 		Utils.agregarAEstructura(sb, CAAtenderFilaPago.class);
 
-		CAAgent tpa = new CAAgent(name, new CAState(), sb, clave);
+		CAAgent tpa = new CAAgent(name, new CAState(), sb, clave, pos);
 		tpa.start();
-		PeriodicDataBESA data = new PeriodicDataBESA(Utils.PERIODIC_TIME, Utils.PERIODIC_DELAY_TIME,
-				PeriodicGuardBESA.START_PERIODIC_CALL);
+		PeriodicDataBESA data = new PeriodicDataBESA(Utils.PERIODIC_TIME, Utils.PERIODIC_DELAY_TIME, PeriodicGuardBESA.START_PERIODIC_CALL);
 
 		Utils.send(tpa.getAdmLocal(), tpa.getAid(), CAAtenderFilaPago.class.getName(), data);
 

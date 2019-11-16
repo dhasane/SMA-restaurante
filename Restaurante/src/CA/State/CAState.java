@@ -6,7 +6,6 @@ package CA.State;
 
 import java.util.LinkedList;
 import java.util.Queue;
-
 import BESA.Kernell.Agent.StateBESA;
 
 public class CAState extends StateBESA {

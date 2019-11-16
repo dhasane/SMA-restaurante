@@ -19,7 +19,7 @@ public class CLRealizarPago extends GuardBESA {
 
 		PagoData fd = (PagoData) ebesa.getData();
 
-		Utils.imp(getAgent().getAlias() + " paga por su pedido " + fd.getMonto());
+		// Utils.imp(getAgent().getAlias() + " paga por su pedido " + fd.getMonto());
 
 		String responderA = fd.responder();
 

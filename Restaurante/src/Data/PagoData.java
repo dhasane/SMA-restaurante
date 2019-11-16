@@ -1,7 +1,7 @@
 package Data;
 
 import BESA.Kernell.Agent.Event.DataBESA;
-import Informacion.PedidosRealizadosNoPagos;
+import Mundo.PedidosRealizadosNoPagos;
 
 public class PagoData extends DataBESA {
 

@@ -27,6 +27,8 @@ public class Utils {
 	public static String Caja = "Caja";
 
 	// metaparametro
+
+	public static int cantidadMaximaDeClientes = 7;
 	public static int cantidadCriticaComida = 3;
 	public static int tiempoMaximoComida = 15; // realmente el maximo puede ser 20, ya que termina siendo mas bien min + max
 	public static int tiempoMinimoComida = 5;

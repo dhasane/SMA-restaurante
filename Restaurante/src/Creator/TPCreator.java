@@ -21,12 +21,12 @@ public class TPCreator {
 	}
 
 	// crea varios agentes
-	public static void crearTP(int cantidad) throws ExceptionBESA {
-		for (int a = 0; a < cantidad; ++a)
-			agente("TP" + Integer.toString(a));
+	public static void crearTP(int[][]  cantidad) throws ExceptionBESA {
+		for (int a = 0; a < cantidad.length; ++a)
+			agente("TP" + Integer.toString(a), cantidad[a]);
 	}
 
-	private static void agente(String name) throws ExceptionBESA {
+	private static void agente(String name, int[] pos) throws ExceptionBESA {
 		StructBESA sb = new StructBESA();
 
 		Utils.agregarAEstructura(sb, TPAtenderFila.class);
@@ -34,10 +34,9 @@ public class TPCreator {
 		Utils.agregarAEstructura(sb, TPProductRequest.class);
 		Utils.agregarAEstructura(sb, TPResponderFila.class);
 
-		TPAgent tpa = new TPAgent(name, new TPState(), sb, clave);
+		TPAgent tpa = new TPAgent(name, new TPState(), sb, clave, pos);
 		tpa.start();
-		PeriodicDataBESA data = new PeriodicDataBESA(Utils.PERIODIC_TIME, Utils.PERIODIC_DELAY_TIME,
-				PeriodicGuardBESA.START_PERIODIC_CALL);
+		PeriodicDataBESA data = new PeriodicDataBESA(Utils.PERIODIC_TIME, Utils.PERIODIC_DELAY_TIME, PeriodicGuardBESA.START_PERIODIC_CALL);
 
 		Utils.send(tpa.getAdmLocal(), tpa.getAid(), TPAtenderFila.class.getName(), data);
 

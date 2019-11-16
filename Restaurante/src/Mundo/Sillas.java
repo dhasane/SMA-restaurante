@@ -1,10 +1,10 @@
-package Informacion;
+package Mundo;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class Cocinar {
+public class Sillas {
 
 	private static Queue<String> ingredientesCocinar;
 

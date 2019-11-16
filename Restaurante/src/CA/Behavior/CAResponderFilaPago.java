@@ -5,6 +5,7 @@ import CA.State.CAState;
 import CL.Behavior.CLHacerFilaPago;
 import Data.FilaData;
 import Data.IDData;
+import Mundo.Mapa.Mapa;
 import Utils.Utils;
 import BESA.Kernell.Agent.GuardBESA;
 import BESA.Kernell.Agent.StateBESA;
@@ -23,6 +24,7 @@ public class CAResponderFilaPago extends GuardBESA {
 		
 		Utils.send(getAgent().getAdmLocal(), ((IDData) ebesa.getData()).getId(), CLHacerFilaPago.class.getName(),
 				new FilaData(state.getAtendiendo(), getAgent().getAid()));
+		Mapa.repaint();
 	}
 
 }

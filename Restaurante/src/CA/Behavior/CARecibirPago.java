@@ -2,11 +2,12 @@ package CA.Behavior;
 
 import BESA.Kernell.Agent.Event.EventBESA;
 import Data.PagoData;
-import Informacion.PedidosRealizadosNoPagos;
-import Informacion.PedidosRealizadosPagos;
-import Utils.Utils;
+import Mundo.PedidosRealizadosNoPagos;
+import Mundo.PedidosRealizadosPagos;
+import Mundo.Mapa.Mapa;
 import BESA.Kernell.Agent.GuardBESA;
 import BESA.Kernell.Agent.StateBESA;
+
 
 public class CARecibirPago extends GuardBESA {
 
@@ -21,12 +22,10 @@ public class CARecibirPago extends GuardBESA {
 		PagoData fd = (PagoData) ebesa.getData();
 
 		// agrega el pedido a los pedidos pagos y lo elimina de los pedidos no pagos
-		Utils.imp("cambiando estado del pedido para " + fd.responder());
+		// Utils.imp("cambiando estado del pedido para " + fd.responder());
 		PedidosRealizadosPagos.add(PedidosRealizadosNoPagos.get(fd.responder()));
 		PedidosRealizadosNoPagos.remove(fd.responder());
-		
-//		Utils.send( getAgent().getAdmLocal(), fd.responder(), CLEsperarPedido.class.getName(), new EmptyData());
-
+		Mapa.repaint();
 	}
 
 }

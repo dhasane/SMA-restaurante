@@ -18,23 +18,21 @@ public class EPCreator {
 	}
 
 	// crea varios agentes
-	public static void crearEP(int cantidad) throws ExceptionBESA {
-		for (int a = 0; a < cantidad; ++a)
-			agente("EP" + Integer.toString(a));
+	public static void crearEP(int[][] cantidad) throws ExceptionBESA {
+		for (int a = 0; a < cantidad.length; ++a)
+			agente("EP" + Integer.toString(a), cantidad[a]);
 	}
 
 	// crea un unico agente, pasandole el tamaño del mapa y su nombre
-	private static void agente(String name) throws ExceptionBESA {
+	private static void agente(String name, int[] pos) throws ExceptionBESA {
 		StructBESA sb = new StructBESA();
 
-//		Utils.agregarAEstructura(sb, EPRevisarPedidos.class);
 		Utils.agregarAEstructura(sb, EPPrepararPedido.class);
 
-		EPAgent ep = new EPAgent(name, new EPState(), sb, clave);
+		EPAgent ep = new EPAgent(name, new EPState(), sb, clave, pos);
 		ep.start();
-		
-		PeriodicDataBESA data = new PeriodicDataBESA(Utils.PERIODIC_TIME, Utils.PERIODIC_DELAY_TIME,
-				PeriodicGuardBESA.START_PERIODIC_CALL);
+
+		PeriodicDataBESA data = new PeriodicDataBESA(Utils.PERIODIC_TIME, Utils.PERIODIC_DELAY_TIME, PeriodicGuardBESA.START_PERIODIC_CALL);
 
 		Utils.send(ep.getAdmLocal(), ep.getAid(), EPPrepararPedido.class.getName(), data);
 	}

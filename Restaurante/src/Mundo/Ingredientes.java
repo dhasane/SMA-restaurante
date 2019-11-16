@@ -1,4 +1,4 @@
-package Informacion;
+package Mundo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,8 +52,9 @@ public class Ingredientes {
 
 	private static void preparacion( String ing )
 	{
+        createIngredientes();
 		try {
-			TimeUnit.MILLISECONDS.sleep( tiempoPreparacion.get(ing) );
+			TimeUnit.SECONDS.sleep( tiempoPreparacion.get(ing) );
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

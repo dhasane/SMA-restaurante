@@ -13,9 +13,6 @@ import javafx.util.Pair;
 
 public class Map extends JPanel{
 
-
-	private static final long serialVersionUID = 1L;
-
 	private int sizex;              // tamaño en x
     private int sizey;              // tamaño en y
     private int width;
@@ -68,7 +65,7 @@ public class Map extends JPanel{
 
         width  = square;
         height = square;
-        
+
      // organizacion de los tiles
         for (int i = 0; i < sizex*sizey; i++) {
             Rectangle rec = new Rectangle( (i%sizex)*width, (i/sizex)*height, width, height );
@@ -98,7 +95,7 @@ public class Map extends JPanel{
             imagesPaintSilla.add(new TexturePaint(sillaImg, rec));
         }
 
-        
+
 
     }
 
@@ -169,13 +166,13 @@ public class Map extends JPanel{
         frame.setVisible(true);
         return(frame);
     }
-    
+
     public void addAgent(String alias, int x, int y ) {
-    	
+
     	String nom = "" + alias.charAt(0) + alias.charAt(1);
-    	
+
     	BufferedImage bi = null;
-    	
+
     	switch ( nom )
     	{
     	case "CL":
@@ -191,7 +188,7 @@ public class Map extends JPanel{
     		bi = cocinero;
     		break;
     	}
-    	
+
         bots.add(new WorldObject(x, y, alias));
         Rectangle rec = new Rectangle(x*width + (width/2), y*height , width/2, height/2 );
         imagesBots.add(rec);
@@ -208,17 +205,17 @@ public class Map extends JPanel{
         }
         repaint();
     }
-    
+
     public void ponerComida(String alias, int x, int y) {
 
         comida.add( new WorldObject(x, y, "food_"+comida.size()) );
         Rectangle rec = new Rectangle( x*width, y*height + (height/2), width/2, height/2 );
         imagesComida.add( rec );
         imagesPaintComida.remove( new TexturePaint(sillaImg, rec) );
-        
+
         repaint();
     }
-    
+
 
     public void move(String alias, int x, int y) {
         int botIndex = find(this.bots, alias);
@@ -291,7 +288,7 @@ public class Map extends JPanel{
     public void setDust(List<WorldObject> dust) {
         this.comida = dust;
     }
-    
+
     public void setSillas(List<WorldObject> sillas) {
         this.sillas = sillas;
     }
@@ -299,8 +296,8 @@ public class Map extends JPanel{
 	public List<WorldObject> getSillas() {
 		return sillas;
 	}
-	
-	
+
+
 
 }
 

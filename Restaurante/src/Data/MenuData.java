@@ -1,8 +1,9 @@
 package Data;
 
 import java.util.List;
-import Informacion.Ingredientes;
+
 import BESA.Kernell.Agent.Event.DataBESA;
+import Mundo.Ingredientes;
 
 public class MenuData extends DataBESA {
 

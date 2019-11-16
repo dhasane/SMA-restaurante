@@ -1,10 +1,11 @@
-package Informacion;
+package Mundo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import Data.PedidoData;
+import Utils.Utils;
 
 public class PedidosRealizadosPagos {
 
@@ -28,7 +29,7 @@ public class PedidosRealizadosPagos {
 			create();
 			pedidosPagos.add(pd);
 			estado.put(pd, false);
-//			Utils.imp("Pedidos pagos : " + Utils.pedidosAStringPair(pedidosPagos));
+			Utils.imp("Pedidos pagos : [" + Utils.pedidosAString(pedidosPagos) + "] " + pedidosPagos.size());
 		}
 	}
 
