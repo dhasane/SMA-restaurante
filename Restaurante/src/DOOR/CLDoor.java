@@ -53,19 +53,11 @@ public class CLDoor extends Thread {
 	}
 
 	int funcionDeTiempo() {
-		// por el momento solo es cada segundo
-		return 1;
+		return (int) (1+Math.round(poissonRandomInterarrivalDelay(1.0)));
 	}
 
-	public static int getPoisson (double lambda){
-		double L = Math.exp(-lambda);
-		double p = 1.0;
-		int k = 0;
-		do{
-			k++;
-			p *= Math.random();
-		} while (p > L);
-		return k-1;
+	public double poissonRandomInterarrivalDelay(double L) {
+		return (Math.log(1.0-Math.random())/-L);
 	}
 
 
