@@ -32,7 +32,7 @@ public class Utils {
 	public static int cantidadCriticaComida = 3;
 	public static int tiempoMaximoComida = 15; // realmente el maximo puede ser 20, ya que termina siendo mas bien min + max
 	public static int tiempoMinimoComida = 5;
-	public static int clientesAAtender = 5;
+	public static int clientesAAtender = 50;
 
 	// funciones genericas
 
@@ -98,5 +98,9 @@ public class Utils {
 //		System.out.println(obj);
 	}
 
+	public static long conseguirTiempo() {
+//        return System.nanoTime();
+        return System.currentTimeMillis();
+	}
 
 }

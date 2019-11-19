@@ -2,6 +2,7 @@
 package CL.State;
 
 import BESA.Kernell.Agent.StateBESA;
+import Utils.Utils;
 
 public class CLState extends StateBESA {
 
@@ -11,9 +12,11 @@ public class CLState extends StateBESA {
 	private String filaAHacer; // la mejor fila
 	private int longitudFilaAHacer; // longitud de la fila
 	private long tiempoEntrada;
+	
+	private long inicioTiempoEspera;
 
 	public CLState() {
-		tiempoEntrada = System.nanoTime();
+		tiempoEntrada = Utils.conseguirTiempo();
 		this.sinPreguntas();
 	}
 
@@ -45,10 +48,19 @@ public class CLState extends StateBESA {
 	public void reducirPregunta() {
 		this.preguntas--;
 	}
-	
+
 	public long getTiempoEntrada()
 	{
 		return this.tiempoEntrada;
 	}
+
+	public void inicioTiempoEspera() {
+		this.inicioTiempoEspera = Utils.conseguirTiempo();
+	}
 	
+	public long conseguirTiempoEspera()
+	{
+		return  Utils.conseguirTiempo() - this.inicioTiempoEspera;
+	}
+
 }

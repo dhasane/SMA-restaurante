@@ -54,7 +54,7 @@ public class Ingredientes {
 	{
         createIngredientes();
 		try {
-			TimeUnit.SECONDS.sleep( tiempoPreparacion.get(ing) );
+			TimeUnit.MILLISECONDS.sleep( tiempoPreparacion.get(ing) );
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

@@ -26,9 +26,11 @@ public class CLHacerFila extends GuardBESA {
 
 		cs.setFila(fd.getOwner(), fd.getLogitud());
 		cs.reducirPregunta();
+		
 
 		// en caso de ya haber visto todas las filas, entra a una
 		if (cs.getPreguntas() <= 0) {
+			cs.inicioTiempoEspera();
 			Utils.imp(getAgent().getAlias() + " entrando a fila con " + cs.getFila());
 			Utils.send(getAgent().getAdmLocal(), cs.getFila(), TPIncluirEnFila.class.getName(),
 					new IDData(getAgent().getAid()));

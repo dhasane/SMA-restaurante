@@ -23,7 +23,7 @@ public class CLRecogerPedido extends GuardBESA {
 	private static void comer( int tiempo )
 	{
 		try {
-			TimeUnit.SECONDS.sleep( tiempo );
+			TimeUnit.MILLISECONDS.sleep( tiempo );
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

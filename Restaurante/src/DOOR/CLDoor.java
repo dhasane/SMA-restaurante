@@ -34,18 +34,18 @@ public class CLDoor extends Thread {
 		while (this.continuar) {
 			if (cantidad < cupo) {
 				if (!espera.isEmpty()) {
-					long tt = System.nanoTime() - espera.remove();
+					long tt = Utils.conseguirTiempo() - espera.remove();
 					Resultados.agregarTiempoClienteEsperaFilaExterna(tt);
 				}
 
 				this.createCL();
 
 			} else {
-				espera.add(System.nanoTime());
+				espera.add(Utils.conseguirTiempo());
 			}
 
 			try {
-				TimeUnit.SECONDS.sleep(funcionDeTiempo());
+				TimeUnit.MILLISECONDS.sleep(funcionDeTiempo());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -77,7 +77,7 @@ public class CLDoor extends Thread {
 	public static void destroyCL(AgentBESA agentBESA) {
 
 		CLState cls = (CLState) ((CLAgent) agentBESA).getState();
-		long tt = System.nanoTime() - cls.getTiempoEntrada();
+		long tt = Utils.conseguirTiempo() - cls.getTiempoEntrada();
 		Resultados.agregarATiempoClienteVisitaCompleta(tt);
 
 		agentBESA.shutdownAgent();
