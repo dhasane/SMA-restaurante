@@ -25,23 +25,23 @@ public class Restaurante {
 	public static void main(String[] args) throws ExceptionBESA {
 		
 		Resultados.iniciar();
-		Mapa.createMapa(10, 20, 5);
+		Mapa.createMapa(20, 10, 10);
 
 		CACreator.setClave(clave);
 		COCreator.setClave(clave);
 		TPCreator.setClave(clave);
 		EPCreator.setClave(clave);
 
-		int[][] tpp = { { 3, 5 }, { 4, 5 } };
+		int[][] tpp = { {1, 9 }, { 2, 9 } };
 		TPCreator.crearTP(tpp);
 
-		int[][] cap = { { 6, 5 }, { 6, 6 } };
+		int[][] cap = { { 10, 4 }, { 10, 5 } };
 		CACreator.crearCA(cap);
 
-		int[][] epp = { { 4, 6 }, { 4, 7 } };
+		int[][] epp = { { 10, 3 }, { 10, 4 } };
 		EPCreator.crearEP(epp);
 
-		int[][] cop = { { 8, 5 }, { 9, 5 }, { 7, 7 } };
+		int[][] cop = { { 13, 4 }, { 13, 5 }, { 13, 6 } };
 		COCreator.crearCO(cop);
 
 		// TODO para las sillas, habria que hacer lo mismo que para los agentes para

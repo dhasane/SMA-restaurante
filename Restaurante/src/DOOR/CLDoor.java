@@ -14,7 +14,7 @@ import Utils.Utils;
 
 public class CLDoor extends Thread {
 
-	private static int cantidad;// cantidad de personas actualmente dentro del restaurante
+	public static int cantidad;// cantidad de personas actualmente dentro del restaurante
 	private int total;			// total de agentes que han entrado durante la simulacion
 	private int cupo; 		// cupo maximo para agentes dentro del restaurante
 	private Queue<Long> espera;
@@ -56,6 +56,18 @@ public class CLDoor extends Thread {
 		// por el momento solo es cada segundo
 		return 1;
 	}
+
+	public static int getPoisson (double lambda){
+		double L = Math.exp(-lambda);
+		double p = 1.0;
+		int k = 0;
+		do{
+			k++;
+			p *= Math.random();
+		} while (p > L);
+		return k-1;
+	}
+
 
 	// crea un agente
 	private void createCL() {
