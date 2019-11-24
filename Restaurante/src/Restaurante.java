@@ -1,6 +1,4 @@
 
-import java.util.concurrent.TimeUnit;
-
 import BESA.ExceptionBESA;
 import Creator.CACreator;
 import Creator.COCreator;
@@ -9,7 +7,6 @@ import Creator.TPCreator;
 import DOOR.CLDoor;
 import Mundo.Mapa.Mapa;
 import Resultados.Resultados;
-import Utils.VisualUtils.ExitListener;
 
 public class Restaurante {
 
@@ -23,7 +20,7 @@ public class Restaurante {
 	// AY -> ayudante TODO
 
 	public static void main(String[] args) throws ExceptionBESA {
-		
+
 		Resultados.iniciar();
 		Mapa.createMapa(20, 10, 10);
 
@@ -53,15 +50,6 @@ public class Restaurante {
 		CLDoor cld = new CLDoor(clave);
 		cld.start();
 
-		// tiempo de prueba
-//		try {
-//			TimeUnit.MINUTES.sleep(1);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-		
-//		cld.cerrarEntrada();
-		
 		return;
 	}
 
