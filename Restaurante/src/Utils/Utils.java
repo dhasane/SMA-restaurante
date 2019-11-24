@@ -28,11 +28,11 @@ public class Utils {
 
 	// metaparametro
 
-	public static int cantidadMaximaDeClientes = 7;
-	public static int cantidadCriticaComida = 3;
+	public static int cantidadMaximaDeClientes = 40;
+	public static int cantidadCriticaComida = 5;
 	public static int tiempoMaximoComida = 15; // realmente el maximo puede ser 20, ya que termina siendo mas bien min + max
 	public static int tiempoMinimoComida = 5;
-	public static int clientesAAtender = 50;
+	public static int clientesAAtender = 60;
 
 	// funciones genericas
 

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package CO.Behavior;
 
 import BESA.Kernell.Agent.Event.EventBESA;
@@ -20,7 +16,7 @@ public class COCocinar extends GuardBESA {
 			((COState) this.getAgent().getState()).inicioCocina();
 			String preparar = Cocinar.pop();
 			Ingredientes.agregarIngrediente(preparar);
-			
+
 		}
 		((COState) this.getAgent().getState()).finalCocina();
 		Mapa.repaint();
